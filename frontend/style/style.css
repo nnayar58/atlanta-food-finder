@@ -7,7 +7,7 @@ body {
 }
 
 .background {
-    background-image: url('background.jpeg');
+    background-image: url('/frontend/assets/background.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,7 +16,6 @@ body {
 }
 
 .home-header-container {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
