@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views  # Import the view
+from .views import search_results_view  # Import the search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', search_results_view, name='search-results'),  # URL for the map
+    path('login/', views.login_view, name='login'),  # Route for login page
+    path('signup/', views.signup_view, name='signup'),  # Route for signup page
+    path('account/', views.account_view, name='account'),  # Route for account page
+    path('', views.home_view, name='home'),  # Route for home page
 ]

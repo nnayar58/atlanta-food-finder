@@ -1,23 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../assets/style/style.css">
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Atlanta Food Finder</title>
+
+    <!-- Link to the CSS -->
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+
+    <!-- Styling for the map and search box -->
+    <style>
+        /* Ensure the map has a defined height, otherwise it won’t be visible */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        /* Style the search input box */
+        #pac-input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            z-index: 5;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
 
-<div class="header-container">
-    <button onclick="window.location.href='home.html';" class="logo-button">
-        <img src="app/assets/" alt="logo" class="logo">
-    </button>
+    <h1>Atlanta Food Finder</h1>
 
-    <div class="signin-container">
-        <button id="loginButton" class="login">Login</button>
-        <button id="signupButton" class="signup">Sign Up</button>
-    </div>
-</div>
+    <!-- Search bar for the Google Places search -->
+    <input id="pac-input" class="controls" type="text" placeholder="Search for restaurants in Atlanta">
 
-<script src="../assets/script/script.js"></script>
+    <!-- Div for the Google Map -->
+    <div id="map"></div>
+
+    <!-- Reference to JavaScript file -->
+    <script src="{% static 'script/search-script.js' %}"></script>
+
+    <!-- Load the Google Maps API with Places library -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap"
+        async
+        defer
+    ></script>
+
 </body>
 </html>
