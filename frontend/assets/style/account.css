@@ -4,6 +4,12 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url('../../assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
 }
 
 .account-container {
@@ -76,11 +82,11 @@ body {
 }
 
 .account-info-button {
-    width: 410px;
-    height: 100px;
+    width: 300px;
+    height: 80px;
     text-align: left;
     padding: 20px;
-    background-color: #8FC393;
+    background-color: #a8c4a4;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 28px;
@@ -91,11 +97,11 @@ body {
 }
 
 .favorites-button {
-    width: 410px;
-    height: 100px;
+    width: 300px;
+    height: 80px;
     text-align: left;
     padding: 20px;
-    background-color: #B2D3B4;
+    background-color: #bed1bc;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 28px;
@@ -106,11 +112,11 @@ body {
 }
 
 .reviews-button {
-    width: 410px;
-    height: 100px;
+    width: 300px;
+    height: 80px;
     text-align: left;
     padding: 20px;
-    background-color: #B2D3B4;
+    background-color: #bed1bc;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 28px;
@@ -130,7 +136,7 @@ body {
     color: black;
     font-family: 'Encode Sans', sans-serif;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 35px;
     text-align: left;
-    margin: 20px;
+    margin-left: 50px;
 }

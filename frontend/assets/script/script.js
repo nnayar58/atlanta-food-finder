@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     applyButtonLogic(homeButtons, '#fff', 'rgba(85, 153, 89, 0.6)');
-    applyButtonLogic(accountButtons, '#8FC393', '#B2D3B4');
+    applyButtonLogic(accountButtons, '#a8c4a4', '#bed1bc');
 
     const loginButton = document.getElementById('loginButton');
     const signupButton = document.getElementById('signupButton');

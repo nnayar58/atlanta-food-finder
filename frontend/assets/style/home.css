@@ -4,11 +4,6 @@
 body {
     margin: 0;
     padding: 0;
-}
-
-.background {
-    /*background-color: #c9d6ff;
-    background:linear-gradient(to right,#e2e2e2,#b2e0b8); */
     background-image: url('../../assets/background.png');
     background-size: cover;
     background-position: center;
@@ -104,7 +99,7 @@ body {
     background-color: rgba(85, 153, 89, 0.2);
     padding: 20px 20px;
     margin: 0px 20px;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
     border-radius: 15px;
 }
 
@@ -143,7 +138,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(75, 122, 77, 0.2);
     opacity: 0;
     transition: opacity 0.3s;
     border-top-left-radius: 12px;
@@ -171,7 +166,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(75, 122, 77, 0.2);
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -199,7 +194,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(75, 122, 77, 0.2);
     opacity: 0;
     transition: opacity 0.3s;
     border-top-right-radius: 12px;

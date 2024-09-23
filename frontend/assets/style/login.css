@@ -147,6 +147,7 @@ button{
     outline:none;
     border:none;
     width:100%;
+    font-weight: 500;
     background: #85b381;
     color:white;
     cursor:pointer;
