@@ -292,3 +292,43 @@ body {
     text-align: left;
     margin: 20px;
 }
+
+/* frontend/src/components/UserProfile.css */
+.profile-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-section {
+  margin-top: 20px;
+}
+
+.profile-actions {
+  margin-top: 20px;
+}
+
+button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
