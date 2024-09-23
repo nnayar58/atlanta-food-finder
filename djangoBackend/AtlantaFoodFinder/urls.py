@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import get_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/profile/', get_profile),
+    path('api/logout/', 'django.contrib.auth.views.logout', name='logout'),
 ]
+
+
