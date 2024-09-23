@@ -2,19 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
 
 body {
-  margin: 0;
-  padding: 0;
+    background-color: #c9d6ff;
+    background:linear-gradient(to right,#e2e2e2,#b2e0b8);
 }
-
-.background {
-    background-image: url('/frontend/assets/background.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-}
-
 .home-header-container {
     align-items: center;
     justify-content: space-between;
