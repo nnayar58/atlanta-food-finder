@@ -1,23 +1,22 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{% static '../assets/style/login.css' %}>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">  <!-- Adjusted path -->
 </head>
 <body>
 
 <div class="background">
     <div class="home-container">
         <div class="home-header-container">
-            <button onclick="window.location.href='home.html';" class="logo-button">
-                <img src="../assets/logo.png" alt="logo" class="logo">
+            <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
+                <img src="{% static 'logo.png' %}" alt="logo" class="logo">  <!-- Adjusted path -->
             </button>
-
             <div class="signin-container">
-                <button onclick="window.location.href='login.html';" id="loginButton" class="login">Login</button>
-                <button onClick="window.location.href='signup.html';" id="signupButton" class="signup">Sign Up</button>
+                <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
             </div>
         </div>
         <div class="main-container">
@@ -30,8 +29,8 @@
                 </div>
                 <div class="search-bar-container">
                     <input type="text" class="search-input" placeholder="Search for Restaurant">
-                    <button onclick="window.location.href='search-results.html';" class="search-button">
-                        <img src="../assets/search-icon.png" alt="search-icon" class="search-icon">
+                    <button onclick="window.location.href='{% url 'search-results' %}';" class="search-button">
+                        <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">  <!-- Adjusted path -->
                     </button>
                 </div>
             </div>
@@ -39,6 +38,6 @@
     </div>
 </div>
 
-<script src="{% static 'assets/script/script.js' %}"></script>
+<script src="{% static 'script/script.js' %}"></script>  <!-- Adjusted path -->
 </body>
 </html>
