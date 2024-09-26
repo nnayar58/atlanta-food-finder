@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
+
+html, body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.home-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #85b381;
+    width: 100vw;
+}
+
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 10px 20px;
+    width: 230px;
+    position: relative;
+}
+
+.logo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    z-index: 1;
+
+}
+
+.logo-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    opacity: 1;
+}
+
+.signin-container {
+    display: flex;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+.signin {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin:hover {
+    background-color: #cfdeca;
+}
+
+.main-container {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Results section styling */
+.results {
+    width: 500px;
+    overflow-y: auto; /* Enable scrolling if results overflow */
+    height: calc(100vh - 120px);
+    background-color: rgba(85, 153, 89, 0.2);
+}
+
+/* Map section styling */
+#map {
+    flex: 1; /* Make map take the remaining space */
+}
+
+.search-title {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 0px;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.name-button {
+    padding: 8px 15px;
+    background-color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+    border: none;
+    border-top-left-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.name-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(75, 122, 77, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-top-left-radius: 12px;
+}
+.name-button:hover::after {
+    opacity: 1;
+}
+
+.cuisine-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.6);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.cuisine-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(75, 122, 77, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cuisine-button:hover::after {
+    opacity: 1;
+}
+
+.location-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.6);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+    border: none;
+    border-top-right-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.location-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(75, 122, 77, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-top-right-radius: 12px;
+}
+.location-button:hover::after {
+    opacity: 1;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 12px;
+    border-top-left-radius: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.search-input {
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    width: 350px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #727272;
+}
+.search-button {
+    border: none;
+    background-color: #6CA770;
+    color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.search-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.search-button:hover {
+    background-color: #5e8f62;
+}
+
+#results-container {
+    margin: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.list-group {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+
+.list-group-item {
+    background-color: #f8f9fa; /* Light background color */
+    margin-top: -15px; /* Margin between list items */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.list-group-item h5 {
+    padding-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.list-group-item p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-color: #454545;
+}
+
+.no-results {
+    margin-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+
+.star {
+    color: lightgray; /* Color for empty stars */
+    font-size: 16px; /* Size of the stars */
+}
+
+.star.filled {
+    color: gold; /* Color for filled stars */
+}
+
+.favorite-button {
+    padding: 5px 10px;
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #85b381;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: solid;
+    border-width: 2px;
+    border-color: #85b381;
+
+}
+
+.favorites-link {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

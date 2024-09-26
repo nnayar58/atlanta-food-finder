@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Favorites</title>
+    <link rel="stylesheet" href="{% static 'style/favorites.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="home-header-container">
+        <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
+            <img src="{% static 'logo.png' %}" alt="logo" class="logo">
+        </button>
+        <h2>Your Favorite Restaurants</h2>
+        <div class="signin-container">
+            <button class="favorites-link" onclick="window.location.href='{% url 'favorites' %}';">View Favorites</button>
+            <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+        </div>
+    </div>
+    <div class="favorites-container">
+        <div id="favorites-items">
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const favoritesContainer = document.getElementById('favorites-items');
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        function updateFavorites() {
+            // Clear the current favorites displayed
+            favoritesContainer.innerHTML = '';
+
+            if (favorites.length === 0) {
+                favoritesContainer.innerHTML = '<p>You have no favorite restaurants saved.</p>';
+            } else {
+                favorites.forEach((favorite, index) => {
+                    const favoriteItem = document.createElement('div');
+                    favoriteItem.classList.add('favorite-item'); // Add the class for styling
+                    favoriteItem.innerHTML = `
+                        <h5>${favorite.name || 'Unknown Restaurant'}</h5>
+                        <p>${favorite.formatted_address || 'Unknown Address'}</p>
+                        <p>Rating: ${favorite.rating !== undefined ? favorite.rating : 'N/A'}</p>
+                        <p>Location: ${favorite.geometry ? favorite.geometry.location.lat : 'N/A'}, ${favorite.geometry ? favorite.geometry.location.lng : 'N/A'}</p>
+                        <button class="remove-button" data-index="${index}">Remove</button> <!-- Remove button -->
+                    `;
+                    favoritesContainer.appendChild(favoriteItem);
+                });
+            }
+        }
+
+        // Function to remove a favorite restaurant
+        function removeFavorite(index) {
+            favorites.splice(index, 1); // Remove the favorite from the array
+            localStorage.setItem('favorites', JSON.stringify(favorites)); // Update local storage
+            updateFavorites(); // Re-render the favorites
+        }
+
+        // Initial load of favorites
+        updateFavorites();
+
+        // Event delegation to handle remove button clicks
+        favoritesContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-button')) {
+                const index = event.target.getAttribute('data-index');
+                removeFavorite(index); // Remove the favorite restaurant
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+download python.
+
+TERMINAL:
+python3 -m pip install Django
+python3 -m pip install requests
+python3 -m pip install python-decouple
+
+RUN:
+cd places_project
+python3 manage.py runserver

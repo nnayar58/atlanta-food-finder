@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
+
+html, body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.home-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #85b381;
+    width: 100vw;
+}
+
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 10px 20px;
+    width: 230px;
+    position: relative;
+}
+
+.logo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    z-index: 1;
+
+}
+
+.logo-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    opacity: 1;
+}
+
+.signin-container {
+    display: flex;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+.signin {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin:hover {
+    background-color: #cfdeca;
+}
+.favorites-link {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.favorites-container {
+    max-width: 800px; /* Limit the width of the container */
+    margin: auto; /* Center the container */
+    background: #fff; /* White background for the container */
+    padding: 20px; /* Add padding inside the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h2 {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    margin: 20px;
+
+}
+
+.favorite-item {
+    border: 1px solid #ddd; /* Light border around each favorite item */
+    border-radius: 5px; /* Rounded corners for each item */
+    padding: 15px; /* Padding inside each item */
+    margin: 15px 0; /* Space between items */
+    background-color: #fdfdfd; /* Slightly different background for items */
+    transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+.favorite-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.favorite-item h5 {
+    margin: 0; /* Remove default margin */
+    color: #007bff; /* Color for restaurant name */
+}
+
+.favorite-item p {
+    margin: 5px 0; /* Slight margin between paragraphs */
+    color: #666; /* Gray color for text */
+}
