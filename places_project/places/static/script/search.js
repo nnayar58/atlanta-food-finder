@@ -60,6 +60,7 @@ function addMarkers(places) {
 }
 
 function updateResultsList(places) {
+    console.log("Updating results list with places:", places);
     const resultsContainer = document.getElementById('results-container');
     const resultsList = document.createElement('ul');
     resultsList.classList.add('list-group');
@@ -67,28 +68,38 @@ function updateResultsList(places) {
     // Clear any previous results
     resultsContainer.innerHTML = '';
 
+    if (places.length === 0) {
+        resultsContainer.innerHTML = '<p class="no-results">No results found.</p>';
+        return;
+    }
+
     places.forEach(place => {
         const listItem = document.createElement('li');
         listItem.classList.add('list-group-item');
-        listItem.innerHTML = `
+        const listItemContent = `
             <h5>${place.name}</h5>
             <p>${place.formatted_address}</p>
             <p>Rating: ${place.rating} ${createStarRating(place.rating)}</p>
             <p>Location: <strong>${place.geometry.location.lat}, ${place.geometry.location.lng}</strong></p>
             <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
+            <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
         `;
-
-        // Add event listener to the favorite button
-        listItem.querySelector('.favorite-button').addEventListener('click', function () {
-            const placeId = this.getAttribute('data-place-id');
-            const selectedPlace = places.find(p => p.place_id === placeId);
-            saveFavorite(selectedPlace);
-        });
+        console.log("List item content:", listItemContent); // Log the content
+        listItem.innerHTML = listItemContent;
 
         resultsList.appendChild(listItem);
     });
 
     resultsContainer.appendChild(resultsList);
+
+    // Add event delegation for favorite buttons
+    resultsContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('favorite-button')) {
+            const placeId = event.target.getAttribute('data-place-id');
+            const selectedPlace = places.find(p => p.place_id === placeId);
+            saveFavorite(selectedPlace);
+        }
+    });
 }
 
 
@@ -144,8 +155,13 @@ function saveFavorite(place) {
 // Function to set up event listeners for both search forms
 function setupSearchForm(formId) {
     const form = document.querySelector(formId);
+    if (!form) {
+        console.error(`Form with id ${formId} not found`);
+        return;
+    }
     const searchTypeInput = form.querySelector('input[name="search_type"]');
     const queryInput = form.querySelector('input[name="query"]');
+
 
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -161,13 +177,11 @@ function setupSearchForm(formId) {
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data); // Log the data received from the API
             currentPlaces = data.results; // Store the fetched places
             addMarkers(currentPlaces); // Call function to add markers to the map
             updateResultsList(currentPlaces); // Call function to update the results list
-
-            // Reset the sort option to default after search
-            document.getElementById('sort-select').selectedIndex = 0; // Select the first option (default)
-        })
+        })        
         .catch(error => console.error('Error fetching places:', error));
     });
 }

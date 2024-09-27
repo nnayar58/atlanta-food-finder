@@ -49,21 +49,10 @@
             <!-- Dynamic search results -->
             <div id="results-container">
                 <!-- Results will be dynamically injected here by JS -->
-                {% if results %}
-                <ul class="list-group">
-                    {% for place in results %}
-                    <li class="list-group-item">
-                        <h5>{{ place.name }}</h5>
-                        <p>{{ place.formatted_address }}</p>
-                        <p>Rating: {{ place.rating }}</p>
-                        <p>Location: <strong>{{ place.geometry.location.lat }}, {{ place.geometry.location.lng }}</strong></p>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p class="no-results">No results found.</p>
-                {% endif %}
+                <!-- The server-side rendering can be removed -->
+                <p class="no-results" style="display:none;">No results found.</p> <!-- Initially hidden -->
             </div>
+            
         </div>
         <div id="map"></div> <!-- Make sure the map div is in the correct place -->
     </div>
@@ -86,7 +75,7 @@
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
 <script src="{% static 'script/search.js' %}"></script>
 </body>
 </html>

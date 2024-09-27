@@ -1,0 +1,60 @@
+.container {
+    font-family: 'Open Sans', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.restaurant-details h1 {
+    font-size: 32px;
+    color: #454545;
+}
+
+.restaurant-details p {
+    font-size: 18px;
+    color: #666;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #85b381;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #6CA770;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.see-more-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.8); /* Adjust background color as needed */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure padding works */
+    transition: background-color 0.3s ease;
+    margin-left: 18px;
+    display: inline-block;
+}
+
+.see-more-button:hover {
+    background-color: rgba(75, 122, 77, 0.8); /* Darker shade on hover */
+}
+
+

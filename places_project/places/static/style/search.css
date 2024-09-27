@@ -327,3 +327,24 @@ html, body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+.see-more-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.8); /* Adjust background color as needed */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure padding works */
+    transition: background-color 0.3s ease;
+    margin-left: 18px;
+    display: inline-block;
+}
+
+.see-more-button:hover {
+    background-color: rgba(75, 122, 77, 0.8); /* Darker shade on hover */
+}
