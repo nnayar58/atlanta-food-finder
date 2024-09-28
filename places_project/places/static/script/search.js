@@ -108,6 +108,7 @@ function sortPlaces(places, sortBy) {
         if (sortBy === 'rating') {
             return (b.rating || 0) - (a.rating || 0); // Sort by rating, descending
         } else if (sortBy === 'distance') {
+            console.log(google.maps);
             const distanceA = google.maps.geometry.spherical.computeDistanceBetween(
                 new google.maps.LatLng(33.7488, -84.3871), // Center of Atlanta
                 a.geometry.location
@@ -125,6 +126,7 @@ document.getElementById('sort-select').addEventListener('change', () => {
     const sortBy = document.getElementById('sort-select').value;
     if (sortBy) { // Check if a valid option is selected
         const sortedPlaces = sortPlaces(currentPlaces, sortBy);
+        console.log(sortedPlaces);
         updateResultsList(sortedPlaces);
         addMarkers(sortedPlaces);
     }
@@ -180,7 +182,7 @@ function setupSearchForm(formId) {
             console.log(data); // Log the data received from the API
             currentPlaces = data.results; // Store the fetched places
             addMarkers(currentPlaces); // Call function to add markers to the map
-            updateResultsList(currentPlaces); // Call function to update the results list
+            updateResultsList(sortPlaces(currentPlaces, 'distance')); // Call function to update the results list
         })        
         .catch(error => console.error('Error fetching places:', error));
     });
