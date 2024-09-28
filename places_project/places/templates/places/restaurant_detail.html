@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name|default:"Restaurant Details" }}</title>
+    <link rel="stylesheet" href="{% static 'style/restaurant-detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header section -->
+        <div class="home-header-container">
+            <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
+                <img src="{% static 'logo.png' %}" alt="logo" class="logo">
+            </button>
+            <div class="signin-container">
+                <button class="favorites-link" onclick="window.location.href='{% url 'favorites' %}';">View Favorites</button>
+                <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+            </div>
+        </div>
+
+        <!-- Main content section with two columns -->
+        <div class="main-content">
+            <div class="details-column">
+                <h1>{{ restaurant.name|default:"Restaurant Details" }}</h1>
+                <p><strong>Address:</strong> {{ restaurant.formatted_address|default:"Not available" }}</p>
+                <p><strong>Contact:</strong> {{ restaurant.formatted_phone_number|default:"Not available" }}</p>
+                <p><strong>Cuisine Type:</strong> {{ restaurant.types|join:", "|default:"Not specified" }}</p>
+                <p><strong>Rating:</strong> {{ restaurant.rating|default:"No rating" }} ({{ restaurant.user_ratings_total|default:"0" }} reviews)</p>
+
+                <h2>Reviews</h2>
+                {% if restaurant.reviews %}
+                    <ul>
+                        {% for review in restaurant.reviews %}
+                            <li>
+                                <strong>{{ review.author_name }}</strong> ({{ review.rating }} stars)
+                                <p>{{ review.text }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No reviews available.</p>
+                {% endif %}
+            </div>
+
+            <div class="map-column">
+                <h2>Location</h2>
+                <div id="map" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function initMap() {
+            const location = {
+                lat: {{ restaurant.geometry.location.lat|default:"0" }},
+                lng: {{ restaurant.geometry.location.lng|default:"0" }},
+            };
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: location,
+            });
+
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
+</body>
+</html>

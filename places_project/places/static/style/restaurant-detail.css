@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.restaurant-details h1 {
+    font-family: 'Encode Sans', sans-serif;
+    font-size: 32px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.restaurant-details p {
+    font-size: 18px;
+    color: #454545;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #85b381;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #6CA770;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+textarea::placeholder {
+    color: #727272;
+}
+
+.see-more-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.8);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-left: 18px;
+}
+
+.see-more-button:hover {
+    background-color: rgba(75, 122, 77, 0.8);
+}
+
+/* Retaining map and container styles from your original setup */
+#map {
+    width: 100%;
+    height: 600px; /* Keeping height flexible */
+    background-color: lightgray;
+}
+
+/* Ensure header spans full width */
+.home-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #85b381;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-left: 0;
+}
+
+.signin-container {
+    display: flex;
+    gap: 10px;
+    padding-right: 20px;
+}
+
+.signin, .favorites-link {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin:hover, .favorites-link:hover {
+    background-color: #cfdeca;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack header and main content */
+}
+
+/* Main content styling */
+.main-content {
+    display: flex; /* Use flex to create a two-column layout */
+    padding: 20px;
+    max-width: 100%; /* Ensures content does not exceed viewport width */
+}
+
+/* Details column */
+.details-column {
+    flex: 1; /* Allow the details column to take available space */
+    padding-right: 20px; /* Space between details and map */
+}
+
+/* Map column */
+.map-column {
+    flex: 0 0 600px; /* Fixed width for the map column */
+}

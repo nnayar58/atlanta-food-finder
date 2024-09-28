@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">  <!-- Adjusted path -->
+</head>
+<body>
+
+<div class="background">
+    <div class="home-container">
+        <div class="home-header-container">
+            <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
+                <img src="{% static 'logo.png' %}" alt="logo" class="logo">  <!-- Adjusted path -->
+            </button>
+            <div class="signin-container">
+                <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="search-container">
+                <div class="slogan">Dine at ATL's Best Restaurants</div>
+                <div class="search-buttons">
+                    <button id="name-button" class="name-button">Name</button>
+                    <button id="cuisine-button" class="cuisine-button">Cuisine</button>
+                    <button id="location-button" class="location-button">Location</button>
+                </div>
+                <form method="post" action="{% url 'search_places' %}" id="home-search-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="search_type" id="home-search-type" value="location"> <!-- Default to location -->
+                    <div class="search-bar-container">
+                        <input type="text" class="search-input" id="home-query" name="query" placeholder="Search for Restaurant">
+                        <button type="submit" class="search-button">
+                            <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">  <!-- Adjusted path -->
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'script/home.js' %}"></script>  <!-- Adjusted path -->
+<script>
+    document.getElementById('name-button').addEventListener('click', () => {
+        document.getElementById('home-search-type').value = 'name';
+        document.getElementById('home-query').placeholder = 'Search by Restaurant Name';
+    });
+
+    document.getElementById('cuisine-button').addEventListener('click', () => {
+        document.getElementById('home-search-type').value = 'cuisine';
+        document.getElementById('home-query').placeholder = 'Search by Cuisine';
+    });
+
+    document.getElementById('location-button').addEventListener('click', () => {
+        document.getElementById('home-search-type').value = 'location';
+        document.getElementById('home-query').placeholder = 'Search by Location';
+    });
+</script>
+</body>
+</html>

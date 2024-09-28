@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"poppins",sans-serif;
+}
+body{
+    background-image: url('../background.png');
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    background-color: #85b381;
+}
+
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 10px 20px;
+    width: 230px;
+    position: relative;
+}
+
+.logo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0);
+    z-index: 1;
+}
+
+.logo-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    opacity: 1;
+}
+
+.container{
+    background:#fff;
+    width:450px;
+    padding:1.5rem;
+    margin:50px auto;
+    margin-top: 60px;
+    border-radius:10px;
+    box-shadow:0 0px 30px 10px rgba(162, 186, 153, .6);
+}
+form{
+    margin:0 2rem;
+}
+.form-title{
+    font-size: 36px;
+    font-weight:bold;
+    text-align:center;
+    padding:1.3rem;
+    font-family: 'Encode Sans', sans-serif;
+    margin-bottom:0.4rem;
+}
+input{
+    color:inherit;
+    width:100%;
+    background-color:transparent;
+    border:none;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom:1px solid #757575;
+    padding-left:1.5rem;
+    font-size:15px;
+}
+.input-group{
+    padding:1% 0;
+    position:relative;
+    margin: 10px 0px;
+}
+.input-group i{
+    position:absolute;
+    color:black;
+}
+input:focus{
+    background-color: transparent;
+    outline:transparent;
+    border-bottom:2px solid hsl(145, 29%, 37%);
+}
+input::placeholder{
+    color:transparent;
+}
+label{
+    color:#757575;
+    position:relative;
+    font-family: 'Open Sans', sans-serif;
+    left:1.3em;
+    top:-1.5em;
+    cursor:auto;
+    transition:0.3s ease all;
+}
+input:focus~label,input:not(:placeholder-shown)~label{
+    top:-3em;
+    color:hsl(155, 23%, 42%);
+    font-family: 'Open Sans', sans-serif;
+    font-size:15px;
+}
+.recover{
+    margin-top: -15px;
+    text-align:right;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1rem;
+    margin-bottom:1rem;
+
+}
+.recover a{
+    text-decoration:none;
+    color: #85b381;
+}
+.recover a:hover{
+    color: #608a5b;
+    text-decoration:underline;
+}
+button{
+    font-size:1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    padding:8px 0;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    width:100%;
+    font-weight: 500;
+    background: #85b381;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background: #648260;
+}
+.or{
+    font-size:1.1rem;
+    margin-top:0.5rem;
+    text-align:center;
+}
+.icons{
+    text-align:center;
+    margin-top: 10px;
+}
+.icons i{
+    color: #85b381;
+    padding:0.8rem 1.5rem;
+    border-radius:10px;
+    font-size:1.5rem;
+    cursor:pointer;
+    border:2px solid #dfe9f5;
+    margin:0 15px;
+    transition:.3s;
+}
+.icons i:hover{
+    background:#e0ecdc;
+    font-size:1.6rem;
+    border:2px solid #85b381;
+}
+.links{
+    display:flex;
+    justify-content:space-between;
+    padding:0 30px;
+    margin-top: 30px;
+    font-weight:bold;
+    white-space: nowrap;
+}
+.text{
+    font-family: 'Open Sans', sans-serif;
+    color: #333333;
+}
+
+ #signUpButton, #signInButton{
+    color: #85b381;
+    border:none;
+    margin-left: 85px;
+    margin-top: -10px;
+    background-color:transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1rem;
+    font-weight:bold;
+}
+#signUpButton:hover, #signInButton:hover {
+    text-decoration:underline;
+    color: #608a5b;
+} 
