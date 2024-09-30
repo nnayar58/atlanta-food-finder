@@ -6,5 +6,6 @@ urlpatterns = [
     path('search/', search_places, name='search_places'),
     path('login/', login, name='login'),
     path('favorites/', favorites, name='favorites'),  # Add this line
+    # path('account/', account, name = 'account')
 ]
 

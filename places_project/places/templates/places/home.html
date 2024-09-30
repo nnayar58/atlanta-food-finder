@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="{% static 'style/home.css' %}">  <!-- Adjusted path -->
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
 </head>
 <body>
 
@@ -12,10 +12,14 @@
     <div class="home-container">
         <div class="home-header-container">
             <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
-                <img src="{% static 'logo.png' %}" alt="logo" class="logo">  <!-- Adjusted path -->
+                <img src="{% static 'logo.png' %}" alt="logo" class="logo">
             </button>
             <div class="signin-container">
-                <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+                <div id="userGreeting" class="user-greeting"></div> <!-- User greeting or sign-in button -->
+                <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                    <a href="{% url 'account' %}" class="dropdown-link">My Account</a>
+                    <a href="#" id="logoutButton" class="dropdown-link">Log Out</a>
+                </div>
             </div>
         </div>
         <div class="main-container">
@@ -26,7 +30,8 @@
                     <button id="cuisine-button" class="cuisine-button">Cuisine</button>
                     <button id="location-button" class="location-button">Location</button>
                 </div>
-                <form method="GET" action="/search" id="home-search-form">
+                <form method="post" action="{% url 'search_places' %}" id="home-search-form">
+                    {% csrf_token %}
                     <input type="hidden" name="search_type" id="home-search-type" value="location"> <!-- Default to location -->
                     <div class="search-bar-container">
                         <input type="text" class="search-input" id="home-query" name="query" placeholder="Search for Restaurant">
@@ -40,10 +45,44 @@
     </div>
 </div>
 
-<script src="{% static 'script/home.js' %}"></script>  <!-- Adjusted path -->
-
-<!-- Handling the search type and placeholder dynamically -->
+<script src="{% static 'script/home.js' %}"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+        const userGreetingDiv = document.getElementById('userGreeting');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const logoutButton = document.getElementById('logoutButton');
+
+        if (userData) {
+            // User is logged in, show greeting
+            userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
+            userGreetingDiv.style.cursor = 'pointer';
+
+            // Toggle dropdown menu on click
+            userGreetingDiv.addEventListener('click', function() {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        } else {
+            // User is not logged in, show sign-in button
+            userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
+        }
+
+        // Log out logic
+        logoutButton.addEventListener('click', function() {
+            localStorage.removeItem('userData');
+            localStorage.removeItem('loggedInUserId');
+            window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+        });
+
+        // Hide dropdown when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    });
+
+    // Search button event listeners
     document.getElementById('name-button').addEventListener('click', () => {
         document.getElementById('home-search-type').value = 'name';
         document.getElementById('home-query').placeholder = 'Search by Restaurant Name';

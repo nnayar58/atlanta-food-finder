@@ -15,6 +15,9 @@ def login(request):
 def favorites(request):
     return render(request, 'places/favorites.html')
 
+def account(request):
+    return render(request, 'places/account.html')
+
 def search_places(request):
     results = []
     form = PlaceSearchForm()

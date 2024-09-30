@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="../assets/style/style.css">
+  {% load static %}
+  <link rel="stylesheet" href="../../static/style/account.css">
   <meta charset="UTF-8">
-  <title>Home Page</title>
+  <title>User Account</title>
 </head>
 <body>
 
 <div class="login-container">
   <div class="login-header-container">
-    <button onclick="window.location.href='home.html';" class="logo-button">
-      <img src="asset/logo.png" alt="logo" class="logo">
+    <button onclick="window.location.href='{% url 'home' %}'" class="logo-button">
+      <img src="{% static 'asset/logo.png' %}" alt="logo" class="logo">
     </button>
     <h1 class="header-text"> User Account </h1>
+    <!-- Add Logout Button -->
+    <button id="logoutButton" class="logout-button">Logout</button>
   </div>
   <div class="main-container">
     <div class="account-buttons">
@@ -21,11 +24,31 @@
       <button id="reviews-button" class="reviews-button">Reviews</button>
     </div>
     <div class="account-info-container">
-      <h1 class="account-text"> Account Name: </h1>
-      <h1 class="account-text"> Email: </h1>
+      <h1 class="account-text"> Account Name: <span id="accountName"></span></h1>
+      <h1 class="account-text"> Email: <span id="accountEmail"></span></h1>
     </div>
   </div>
+</div>
 
-  <script src="../assets/script/account-script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (userData) {
+          document.getElementById('accountName').innerText = `${userData.firstName} ${userData.lastName}`;
+          document.getElementById('accountEmail').innerText = userData.email;
+      } else {
+          document.getElementById('accountName').innerText = 'Guest';
+          document.getElementById('accountEmail').innerText = 'Not logged in';
+      }
+  });
+
+  const logoutButton = document.getElementById('logoutButton');
+  logoutButton.addEventListener('click', () => {
+      localStorage.clear(); // Clear all stored data
+      window.location.href = "{% url 'login' %}"; // Redirect to login page
+  });
+</script>
+
+<script src="{% static 'assets/script/account-script.js' %}"></script>
 </body>
 </html>

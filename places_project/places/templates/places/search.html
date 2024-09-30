@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Places</title>
     <link rel="stylesheet" href="{% static 'style/search.css' %}">
+    <!-- <script type = "module" src = "../../static/script/firebaseauth.js"></script> -->
 </head>
 <body>
 <div class="container">
@@ -57,26 +58,7 @@
         <div id="map"></div> <!-- Make sure the map div is in the correct place -->
     </div>
 </div>
-<script>
-    function getQueryParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        query: params.get('query'),
-        searchType: params.get('search_type')
-    };
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-    const params = getQueryParams();
-    const query = params.query;
-    const searchType = params.searchType;
-
-    if (query) {
-        // Call the searchPlaces function (in your search.js) to update the map and results
-        searchPlaces(query, searchType);
-    }
-});
-</script>
 <script>
     document.getElementById('search-name').addEventListener('click', () => {
         document.getElementById('search-type').value = 'name';
@@ -96,26 +78,5 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=geometry"></script>
 <script src="{% static 'script/search.js' %}"></script>
-<script>
-    // Function to extract URL parameters (e.g., the search query and search type)
-    function getQueryParams() {
-        const params = new URLSearchParams(window.location.search);
-        return {
-            query: params.get('query'),
-            searchType: params.get('search_type')
-        };
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const params = getQueryParams();
-        const query = params.query;
-        const searchType = params.searchType;
-
-        if (query) {
-            // Call the searchPlaces function to update the map and display results
-            searchPlaces(query, searchType);
-        }
-    });
-</script>
 </body>
 </html>

@@ -8,100 +8,19 @@ function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 33.7488, lng: -84.3871 }, // Center on Atlanta
         zoom: 12, // Zoom level
-        minZoom: 10, // Set the minimum zoom level (adjust based on your needs)
-        maxZoom: 20, // Optional: Set the maximum zoom level
-        restriction: {
-            latLngBounds: {
-                north: 33.886885,
-                south: 33.647912,
-                west: -84.551137,
-                east: -84.289779,
-            },
-        }
     });
 
-    const bounds = new google.maps.LatLngBounds(
-        { lat: 33.647912, lng: -84.551137 }, // Southwest corner
-        { lat: 33.886885, lng: -84.289779 }  // Northeast corner
-    );
-
-    map.fitBounds(bounds);
-
-    map.addListener('dragend', function() {
-        if (!bounds.contains(map.getCenter())) {
-            map.setCenter({ lat: 33.7488, lng: -84.3871 }); // Recenter if out of bounds
-        }
-    });
-}
-
-function validateSearchLocation(query) {
-    const geocoder = new google.maps.Geocoder();
-    const bounds = new google.maps.LatLngBounds(
-        { lat: 33.647912, lng: -84.551137 }, // Southwest corner
-        { lat: 33.886885, lng: -84.289779 }  // Northeast corner
-    );
-
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ address: query }, function(results, status) {
-            if (status === 'OK') {
-                const location = results[0].geometry.location;
-                if (bounds.contains(location)) {
-                    resolve(true); // Location is within bounds
-                } else {
-                    alert('Location is outside Atlanta. Please enter a location within Atlanta.');
-                    resolve(false); // Location out of bounds
-                }
-            } else {
-                alert('Geocoding failed. Please enter a valid location.');
-                reject('Geocoding failed');
-            }
-        });
-    });
-}
-
-function searchPlaces(query, searchType) {
-    // Example API call to fetch results (you will need a real backend API here)
-    fetch(`/search-api?query=${query}&search_type=${searchType}`)
-        .then(response => response.json())
-        .then(data => {
-            currentPlaces = data.results; // Store the fetched places
-            if (currentPlaces.length === 0) {
-                document.querySelector('.no-results').style.display = 'block';
-            } else {
-                document.querySelector('.no-results').style.display = 'none';
-                addMarkers(currentPlaces); // Add markers to the map
-                updateResultsList(currentPlaces); // Update the results list
-            }
-        })
-        .catch(error => console.error('Error fetching search results:', error));
 }
 
 function addMarkers(places) {
-    // Define the Atlanta bounds
-    const atlantaBounds = new google.maps.LatLngBounds(
-        { lat: 33.647912, lng: -84.551137 }, // Southwest corner
-        { lat: 33.886885, lng: -84.289779 }  // Northeast corner
-    );
-
     // Clear existing markers
     markers.forEach(marker => marker.setMap(null));
     markers = []; // Reset markers array
 
     if (places.length === 0) return; // Return early if no places are found
 
-    // Filter places within Atlanta bounds
-    const atlantaPlaces = places.filter(place => {
-        const location = new google.maps.LatLng(place.geometry.location.lat, place.geometry.location.lng);
-        return atlantaBounds.contains(location); // Only return places within Atlanta bounds
-    });
-
-    if (atlantaPlaces.length === 0) {
-        alert('No places found within Atlanta.');
-        return;
-    }
-
     // Center the map on the first result
-    const firstPlace = atlantaPlaces[0];
+    const firstPlace = places[0];
     const position = {
         lat: firstPlace.geometry.location.lat,
         lng: firstPlace.geometry.location.lng
@@ -110,7 +29,7 @@ function addMarkers(places) {
     map.setCenter(position); // Center the map on the first place
     map.setZoom(14); // Optional: Adjust zoom level
 
-    atlantaPlaces.forEach(place => {
+    places.forEach(place => {
         const position = {
             lat: place.geometry.location.lat,
             lng: place.geometry.location.lng
@@ -141,6 +60,7 @@ function addMarkers(places) {
 }
 
 function updateResultsList(places) {
+    console.log("Updating results list with places:", places);
     const resultsContainer = document.getElementById('results-container');
     const resultsList = document.createElement('ul');
     resultsList.classList.add('list-group');
@@ -153,22 +73,7 @@ function updateResultsList(places) {
         return;
     }
 
-    // Filter places within Atlanta bounds
-    const atlantaBounds = new google.maps.LatLngBounds(
-        { lat: 33.647912, lng: -84.551137 }, // Southwest corner
-        { lat: 33.886885, lng: -84.289779 }  // Northeast corner
-    );
-    const atlantaPlaces = places.filter(place => {
-        const location = new google.maps.LatLng(place.geometry.location.lat, place.geometry.location.lng);
-        return atlantaBounds.contains(location); // Only return places within Atlanta bounds
-    });
-
-    if (atlantaPlaces.length === 0) {
-        resultsContainer.innerHTML = '<p class="no-results">No places found within Atlanta.</p>';
-        return;
-    }
-
-    atlantaPlaces.forEach(place => {
+    places.forEach(place => {
         const listItem = document.createElement('li');
         listItem.classList.add('list-group-item');
         const listItemContent = `
@@ -179,6 +84,7 @@ function updateResultsList(places) {
             <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
             <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
         `;
+        console.log("List item content:", listItemContent); // Log the content
         listItem.innerHTML = listItemContent;
 
         resultsList.appendChild(listItem);
@@ -237,15 +143,24 @@ function createStarRating(rating) {
     return starsHtml;
 }
 
-// Function to save a favorite restaurant
+//temp holder function for adding to favorites
 function saveFavorite(place) {
-    if (!favorites.find(fav => fav.place_id === place.place_id)) { // Check if already favorited
-        favorites.push(place); // Add to favorites
-        localStorage.setItem('favorites', JSON.stringify(favorites)); // Save to local storage
-        alert(`${place.name} has been added to your favorites!`);
-    } else {
-        alert(`${place.name} is already in your favorites!`);
+    const userId = localStorage.getItem('loggedInUserId');
+    if (!userId) {
+        alert('You need to be logged in to save favorites.');
+        return;
     }
+
+    const userFavoritesRef = doc(db, "users", userId);
+
+    setDoc(userFavoritesRef, place)
+        .then(() => {
+            alert(`${place.name} has been added to your favorites!`);
+        })
+        .catch((error) => {
+            console.error("Error adding favorite: ", error);
+            alert('Failed to add favorite.');
+        });
 }
 
 // Function to set up event listeners for both search forms
@@ -287,17 +202,6 @@ function setupSearchForm(formId) {
 document.addEventListener('DOMContentLoaded', function () {
     setupSearchForm('#places-search-form'); // For search.html
     setupSearchForm('#home-search-form'); // For home.html
-
-    const params = getQueryParams();
-    console.log("URL Parameters:", params);  // Log the extracted query and search type
-
-    const query = params.query;
-    const searchType = params.searchType;
-
-    if (query) {
-        console.log("Executing search for:", query, searchType);  // Log the search query and type
-        searchPlaces(query, searchType);
-    }
 
     // Update search type and placeholder based on button click for home.html
     document.getElementById('name-button').addEventListener('click', () => {
