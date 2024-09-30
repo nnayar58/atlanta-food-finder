@@ -26,13 +26,12 @@
                     <button id="cuisine-button" class="cuisine-button">Cuisine</button>
                     <button id="location-button" class="location-button">Location</button>
                 </div>
-                <form method="post" action="{% url 'search_places' %}" id="home-search-form">
-                    {% csrf_token %}
+                <form method="GET" action="/search" id="home-search-form">
                     <input type="hidden" name="search_type" id="home-search-type" value="location"> <!-- Default to location -->
                     <div class="search-bar-container">
                         <input type="text" class="search-input" id="home-query" name="query" placeholder="Search for Restaurant">
                         <button type="submit" class="search-button">
-                            <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">  <!-- Adjusted path -->
+                            <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">
                         </button>
                     </div>
                 </form>
@@ -42,6 +41,8 @@
 </div>
 
 <script src="{% static 'script/home.js' %}"></script>  <!-- Adjusted path -->
+
+<!-- Handling the search type and placeholder dynamically -->
 <script>
     document.getElementById('name-button').addEventListener('click', () => {
         document.getElementById('home-search-type').value = 'name';
