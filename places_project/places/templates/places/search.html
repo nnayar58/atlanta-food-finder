@@ -40,21 +40,17 @@
             <div class="sort-options">
                 <label for="sort-select">Sort by:</label>
                 <select id="sort-select">
-                    <option value="" disabled selected>Select an option</option> <!-- Default empty option -->
                     <option value="rating">Rating</option>
                     <option value="distance" selected>Distance</option>
                 </select>
             </div>
 
-            <!-- Dynamic search results -->
             <div id="results-container">
-                <!-- Results will be dynamically injected here by JS -->
-                <!-- The server-side rendering can be removed -->
-                <p class="no-results" style="display:none;">No results found.</p> <!-- Initially hidden -->
+                <p class="no-results" style="display:none;">No results found.</p>
             </div>
             
         </div>
-        <div id="map"></div> <!-- Make sure the map div is in the correct place -->
+        <div id="map"></div>
     </div>
 </div>
 <script>

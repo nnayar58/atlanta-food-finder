@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ restaurant.name|default:"Restaurant Details" }}</title>
-    <link rel="stylesheet" href="{% static 'style/restaurant-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'style/restaurant_detail.css' %}">
 </head>
 <body>
     <div class="container">
-        <!-- Header section -->
         <div class="home-header-container">
             <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
                 <img src="{% static 'logo.png' %}" alt="logo" class="logo">
@@ -19,8 +18,6 @@
                 <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
             </div>
         </div>
-
-        <!-- Main content section with two columns -->
         <div class="main-content">
             <div class="details-column">
                 <h1>{{ restaurant.name|default:"Restaurant Details" }}</h1>

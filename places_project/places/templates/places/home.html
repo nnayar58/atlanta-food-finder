@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="{% static 'style/home.css' %}">  <!-- Adjusted path -->
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
 </head>
 <body>
 
@@ -12,7 +12,7 @@
     <div class="home-container">
         <div class="home-header-container">
             <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
-                <img src="{% static 'logo.png' %}" alt="logo" class="logo">  <!-- Adjusted path -->
+                <img src="{% static 'logo.png' %}" alt="logo" class="logo">
             </button>
             <div class="signin-container">
                 <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
@@ -40,9 +40,8 @@
     </div>
 </div>
 
-<script src="{% static 'script/home.js' %}"></script>  <!-- Adjusted path -->
+<script src="{% static 'script/home.js' %}"></script>
 
-<!-- Handling the search type and placeholder dynamically -->
 <script>
     document.getElementById('name-button').addEventListener('click', () => {
         document.getElementById('home-search-type').value = 'name';
