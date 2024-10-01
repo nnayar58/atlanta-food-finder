@@ -122,9 +122,16 @@ function addMarkers(places) {
             title: place.name,
         });
 
-        // Create an info window to display place details
+        // Create an info window with a "See More" button
+        const infoWindowContent = `
+            <h5>${place.name}</h5>
+            <p>${place.formatted_address}</p>
+            <p>Rating: ${place.rating || "No rating"}</p>
+            <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
+        `;
+
         const infoWindow = new google.maps.InfoWindow({
-            content: `<h5>${place.name}</h5><p>${place.formatted_address}</p>`,
+            content: infoWindowContent,
         });
 
         // Show info window on marker click
@@ -139,6 +146,7 @@ function addMarkers(places) {
     // Trigger map resize after adding markers
     google.maps.event.trigger(map, 'resize');
 }
+
 
 function updateResultsList(places) {
     const resultsContainer = document.getElementById('results-container');
