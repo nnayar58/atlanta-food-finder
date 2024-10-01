@@ -81,7 +81,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+ }
 
 .signin:hover {
     background-color: #cfdeca;
@@ -89,153 +89,82 @@ body {
 
 .main-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+
     flex-grow: 1;
 }
 
-.search-container {
-    background-color: rgba(85, 153, 89, 0.2);
+.left-search-container {
     padding: 20px 20px;
-    margin: 0px 20px;
-    margin-bottom: 200px;
+    margin-bottom: 250px;
     border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 30vw;
+    margin-left: 15vw;
 }
 
-.slogan {
+.right-search-container {
+    padding: 20px 20px;
+    margin-bottom: 150px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 30vw;
+    margin-right: 15vw;
+
+}
+
+.slogan1 {
+    color: #4a5e4b;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.slogan2 {
+    color: #5f8c62;
+    font-family: 'Encode Sans', sans-serif;
+    margin-top: -10px;
+    font-weight: 650;
+    font-size: 50px;
+}
+.slogan3 {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.slogan4 {
     color: black;
     font-family: 'Encode Sans', sans-serif;
     font-weight: 500;
-    font-size: 70px;
-    margin: 10px;
-}
-
-.search-buttons {
-    display: flex;
-    padding-top: 10px;
-    gap: 0px;
-}
-
-.name-button {
-    padding: 10px 20px;
-    background-color: #FFFFFF;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: black;
-    border: none;
-    border-top-left-radius: 12px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    position: relative;
-}
-
-.name-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(75, 122, 77, 0.2);
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-top-left-radius: 12px;
-}
-.name-button:hover::after {
-    opacity: 1;
-}
-
-.cuisine-button {
-    padding: 10px 20px;
-    background-color: rgba(85, 153, 89, 0.6);
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: black;
-    border: none;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-}
-
-.cuisine-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(75, 122, 77, 0.2);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.cuisine-button:hover::after {
-    opacity: 1;
-}
-
-.location-button {
-    padding: 10px 20px;
-    background-color: rgba(85, 153, 89, 0.6);
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: black;
-    border: none;
-    border-top-right-radius: 12px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-}
-
-.location-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(75, 122, 77, 0.2);
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-top-right-radius: 12px;
-}
-.location-button:hover::after {
-    opacity: 1;
-}
-
-.search-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    background-color: #fff;
-    border-radius: 12px;
-    border-top-left-radius: 0px;
-}
-
-.search-input {
-    border: none;
-    padding: 10px 20px;
-    font-size: 24px;
-    font-family: 'Open Sans', sans-serif;
-    width: 800px;
-    outline: none;
-}
-
-.search-input::placeholder {
-    color: #727272;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .search-button {
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #6CA770;
-    color: white;
     padding: 20px 20px;
-    font-size: 16px;
     cursor: pointer;
-    margin: 10px;
     border-radius: 12px;
     transition: background-color 0.3s ease;
+    border-width: 3px;
+    border-color: #e0ecdc;
+    border-style: solid;
+    box-shadow:0 5px 20px 0px rgba(170, 204, 159, .8);
+
 }
 
 .search-icon {
@@ -245,4 +174,88 @@ body {
 
 .search-button:hover {
     background-color: #5e8f62;
+}
+
+.button-text {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    padding-right: 20px;
+}
+
+.scrollable-restaurants {
+    max-height: 400px;            /* Set a max height for the scrollable area */
+    overflow-y: auto;             /* Enable vertical scrolling */
+    padding: 10px;
+    border-width: 4px;
+    border-color: #e0ecdc;
+    border-style: solid;
+    border-radius: 8px;           /* Optional: rounded corners */
+    background-color: #fff;       /* Background color */
+    box-shadow:0px 5px 30px 0px rgba(170, 204, 159, .8);
+
+}
+
+.restaurant-list {
+    display: flex;
+    flex-direction: column;       /* Stack the restaurant items vertically */
+}
+
+.restaurant-item {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    padding: 10px;
+    border-bottom: 2px solid #eee; /* Separate restaurant items */
+}
+
+.restaurant-item:last-child {
+    border-bottom: none;          /* Remove border from last item */
+}
+
+.see-more-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.8);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border-width: 4px;
+    border-color: #c6dbbf;
+    border-style: solid;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.see-more-button:hover {
+    background-color: rgba(75, 122, 77, 0.8);
+}
+
+.restaurant-item {
+    margin-bottom: px; /* Spacing between restaurant items */
+}
+
+.restaurant-name {
+    display: block;
+    margin-bottom: -8px;
+    font-size: 20px;
+}
+
+.restaurant-address {
+    margin-bottom: -5px;
+    display: block;
+}
+
+.restaurant-label {
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.see-more-button {
+    margin: 10px 0px;
 }

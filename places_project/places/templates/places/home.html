@@ -3,6 +3,7 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="{% static 'style/home.css' %}">
 </head>
@@ -19,44 +20,27 @@
             </div>
         </div>
         <div class="main-container">
-            <div class="search-container">
-                <div class="slogan">Dine at ATL's Best Restaurants</div>
-                <div class="search-buttons">
-                    <button id="name-button" class="name-button">Name</button>
-                    <button id="cuisine-button" class="cuisine-button">Cuisine</button>
-                    <button id="location-button" class="location-button">Location</button>
+            <div class="left-search-container">
+                <div class="slogan1">Welcome to</div>
+                <div class="slogan2">Atlanta's Best</div>
+                <div class="slogan2">Restaurant Finder</div>
+                <div class="slogan3">Discover, Search, Dine at ATL's Best Restaurants </div>
+                <button onClick="window.location.href='{% url 'search_places' %}';" class="search-button">
+                    <span class="button-text">Search & Eat Now</span>
+                    <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">
+                </button>
+            </div>
+            <div class="right-search-container">
+                <div class="slogan4">Current Top Ten Favorites</div>
+                <div class="scrollable-restaurants">
+                    <div id="restaurant-list" class="restaurant-list"></div>
                 </div>
-                <form method="GET" action="/search" id="home-search-form">
-                    <input type="hidden" name="search_type" id="home-search-type" value="location"> <!-- Default to location -->
-                    <div class="search-bar-container">
-                        <input type="text" class="search-input" id="home-query" name="query" placeholder="Search for Restaurant">
-                        <button type="submit" class="search-button">
-                            <img src="{% static 'search-icon.png' %}" alt="search-icon" class="search-icon">
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
 
 <script src="{% static 'script/home.js' %}"></script>
-
-<script>
-    document.getElementById('name-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'name';
-        document.getElementById('home-query').placeholder = 'Search by Restaurant Name';
-    });
-
-    document.getElementById('cuisine-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'cuisine';
-        document.getElementById('home-query').placeholder = 'Search by Cuisine';
-    });
-
-    document.getElementById('location-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'location';
-        document.getElementById('home-query').placeholder = 'Search by Location';
-    });
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGVTN23e2n3JsjDYxkhsNAfRlrSMxGU0&libraries=places"></script>
 </body>
 </html>
