@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
 
 html, body {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    margin: 0;
+    padding: 0;
     width: 100vw;
     height: 100vh;
 }
@@ -90,17 +90,15 @@ html, body {
     flex-grow: 1;
 }
 
-/* Results section styling */
 .results {
     width: 500px;
-    overflow-y: auto; /* Enable scrolling if results overflow */
+    overflow-y: auto;
     height: calc(100vh - 120px);
     background-color: rgba(85, 153, 89, 0.2);
 }
 
-/* Map section styling */
 #map {
-    flex: 1; /* Make map take the remaining space */
+    flex: 1;
 }
 
 .search-title {
@@ -256,16 +254,16 @@ html, body {
 .list-group {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 
 .list-group-item {
-    background-color: #f8f9fa; /* Light background color */
-    margin-top: -15px; /* Margin between list items */
-    border-radius: 10px; /* Rounded corners */
+    background-color: #f8f9fa;
+    margin-top: -15px;
+    border-radius: 10px;
     padding: 10px;
     padding-top: 0px;
 }
@@ -273,14 +271,16 @@ html, body {
 .list-group-item h5 {
     padding-top: 10px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 0px;
+    margin-left: 5px;
 }
 
 .list-group-item p {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-color: #454545;
+    margin-left: 5px;
 }
 
 .no-results {
@@ -290,12 +290,12 @@ html, body {
 }
 
 .star {
-    color: lightgray; /* Color for empty stars */
-    font-size: 16px; /* Size of the stars */
+    color: lightgray;
+    font-size: 16px;
 }
 
 .star.filled {
-    color: gold; /* Color for filled stars */
+    color: gold;
 }
 
 .favorite-button {
@@ -312,7 +312,8 @@ html, body {
     border: solid;
     border-width: 2px;
     border-color: #85b381;
-
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .favorites-link {
@@ -330,7 +331,7 @@ html, body {
 
 .see-more-button {
     padding: 8px 15px;
-    background-color: rgba(85, 153, 89, 0.8); /* Adjust background color as needed */
+    background-color: rgba(85, 153, 89, 0.8);
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 15px;
@@ -338,13 +339,53 @@ html, body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Ensure padding works */
+    text-decoration: none;
+    display: inline-block;
     transition: background-color 0.3s ease;
     margin-left: 18px;
     display: inline-block;
 }
 
 .see-more-button:hover {
-    background-color: rgba(75, 122, 77, 0.8); /* Darker shade on hover */
+    background-color: rgba(75, 122, 77, 0.8);
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    margin-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.sort-options label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.sort-options select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.sort-options select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.sort-options option:disabled {
+    color: #999;
+}
+
+.sort-options select option[selected] {
+    font-weight: bold;
+    color: #007bff;
 }
