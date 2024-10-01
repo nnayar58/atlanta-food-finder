@@ -1,151 +1,245 @@
-/* Green Theme CSS for User Profile Page */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8f5;
     margin: 0;
     padding: 0;
-  }
+    background-image: url('../background.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
   
-  .login-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #e6f7ee;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .logo-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .logo {
-    width: 80px;
-    height: auto;
-  }
-  
-  .header-text {
-    color: #2e8b57;
-    font-size: 2.2rem;
-    font-weight: bold;
-  }
-  
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .account-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .account-info-button,
-  .favorites-button,
-  .reviews-button {
-    background-color: #3cb371;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .account-info-button:hover,
-  .favorites-button:hover,
-  .reviews-button:hover {
-    background-color: #2e8b57;
-  }
-  
-  .account-info-container {
-    background-color: #e6f7ee;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    text-align: left;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .account-text {
-    font-size: 1.2rem;
-    color: #2e8b57;
-  }
-  
-  .account-text span {
-    font-weight: bold;
-    color: #3cb371;
-  }
-    /* Logout button styling */
-  .logout-button {
-    background-color: #f44336; /* Red color for the logout button */
-    color: white;
-    padding: 10px 20px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-right: 20px;
-    transition: background-color 0.3s ease;
-  }
+.login-container {
 
-  .logout-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
-
-  /* Header container with logout button */
-  .login-header-container {
+}
+  
+.login-header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    background-color: #85b381; /* Maintain the green theme */
-    padding: 20px;
-  }
-
-.header-text {
-  font-family: 'Encode Sans', sans-serif;
-  font-size: 24px;
-  color: white;
-  text-align: center;
-  flex-grow: 1;
+    background-color: #85b381;
 }
 
-  /* Mobile Responsive */
-  @media (max-width: 600px) {
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 10px 20px;
+    width: 230px;
+    position: relative;
+}
+
+.logo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    z-index: 1;
+
+}
+
+.logo-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    opacity: 1;
+}
+
+h2 {
+    color: #4a5e4b;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+  
+.main-container {
+    background:#fff;
+    width:450px;
+    padding:1.5rem;
+    margin:50px auto;
+    margin-top: 30px;
+    border-radius:10px;
+    box-shadow:0px 0px 30px 0px rgba(170, 204, 159, .8);
+}
+
+  
+.account-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.favorites-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6CA770;
+    padding: 20px 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+    border-width: 3px;
+    border-color: #e0ecdc;
+    border-style: solid;
+    width: 100vh;
+    box-shadow:0 5px 20px 0px rgba(170, 204, 159, .8);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    padding-right: 20px;
+    float: center;
+}
+
+.favorites-button:hover {
+    background-color: #5e8f62;
+}
+  
+.account-info-container {
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+}
+  
+.account-text {
+    color: #4a5e4b;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: left;
+    margin: 0px;
+    margin-bottom: 15px;
+}
+
+.account-text span {
+    font-weight: 600;
+    color: #5f8c62
+}
+
+.logout-button {
+    margin: 0px;
+    margin-top: -10px;
+    padding: 10px 20px;
+    background-color: #d40000;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.logout-button:hover {
+    background-color: #b50000; /* Darker red on hover */
+}
+
+.signin-container {
+    display: flex;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+.header-text {
+    font-family: 'Encode Sans', sans-serif;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.user-greeting {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu {
+    margin-top:19px;
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    display: none;
+    padding: 10px 0;
+    margin-right: 5px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.search-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+    border-radius: 12px;
+    border:none;
+    margin-right:5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
     .login-container {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     .account-buttons {
-      flex-direction: column;
+        flex-direction: column;
     }
-  
+
     .account-info-button,
     .favorites-button,
     .reviews-button {
-      width: 100%;
-      margin-bottom: 10px;
+        width: 100%;
+        margin-bottom: 10px;
     }
-  
+
     .header-text {
-      font-size: 1.8rem;
+        font-size: 1.8rem;
     }
-  }
-  
+}
