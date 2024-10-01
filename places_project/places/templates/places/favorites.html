@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Favorites</title>
-    <link rel="stylesheet" href="{% static 'style/favorites2.css' %}">
+    <link rel="stylesheet" href="{% static 'style/favorites4.css' %}">
 </head>
 <body>
 <div class="container">
@@ -13,8 +13,11 @@
         <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
             <img src="{% static 'logo.png' %}" alt="logo" class="logo">
         </button>
-        <h2>Your Favorite Restaurants</h2>
+
         <div class="signin-container">
+            <button onClick="window.location.href='{% url 'search_places' %}';" class="search-header-button">
+                <img src="{% static 'search-icon.png' %}" alt="search-icon" style="min-width:120%;">
+            </button>
             <div id="userGreeting" class="user-greeting"></div>
             <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
                 <a href="{% url 'account' %}" class="dropdown-link">My Account</a>
@@ -23,6 +26,7 @@
             </div>
         </div>
     </div>
+    <h2>Your Favorite Restaurants</h2>
     <div class="favorites-container">
         <div id="favorites-items">
         </div>

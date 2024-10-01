@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% load static %}
-  <link rel="stylesheet" href="../../static/style/account.css">
-  <meta charset="UTF-8">
-  <title>User Account</title>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Page</title>
+    <link rel="stylesheet" href="{% static 'style/account.css' %}">
 </head>
 <body>
 
 <div class="login-container">
-  <div class="login-header-container">
-    <button onclick="window.location.href='{% url 'home' %}'" class="logo-button">
-      <img src="{% static 'asset/logo.png' %}" alt="logo" class="logo">
-    </button>
-    <h1 class="header-text"> User Account </h1>
-    <!-- Add Logout Button -->
-    <button id="logoutButton" class="logout-button">Logout</button>
-  </div>
-  <div class="main-container">
-    <div class="account-buttons">
-      <button id="account-info-button" class="account-info-button">Account Info</button>
-      <button id="favorites-button" class="favorites-button">Favorites</button>
-      <button id="reviews-button" class="reviews-button">Reviews</button>
+    <div class="login-header-container">
+        <button onclick="window.location.href='{% url 'home' %}';" class="logo-button">
+            <img src="{% static 'logo.png' %}" alt="logo" class="logo">
+        </button>
+        <div class="signin-container">
+            <button onClick="window.location.href='{% url 'search_places' %}';" class="search-header-button">
+                <img src="{% static 'search-icon.png' %}" alt="search-icon" style="min-width:120%;">
+            </button>
+            <div id="userGreeting" class="user-greeting"></div>
+            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="{% url 'account' %}" class="dropdown-link">My Account</a>
+                <a href="{% url 'favorites' %}" class="dropdown-link">My Favorites</a>
+                <a href="#" id="logoutButton" class="dropdown-link">Log Out</a>
+            </div>
+        </div>
     </div>
-    <div class="account-info-container">
-      <h1 class="account-text"> Account Name: <span id="accountName"></span></h1>
-      <h1 class="account-text"> Email: <span id="accountEmail"></span></h1>
+    <h2>User Account</h2>
+    <div class="main-container">
+        <div class="account-info-container">
+            <h1 class="account-text"> Account Name: <span id="accountName"></span></h1>
+            <h1 class="account-text"> Email: <span id="accountEmail"></span></h1>
+            <h1 class="account-text"> </h1>
+        </div>
+        <div style="display:flex; justify-content: center; align-items: center; flex-direction:column;">
+            <button id="logoutButton" class="logout-button">Logout</button>
+            <h1 style="margin-top: 80px; font-weight: 600;" class="account-text">Click Below to View Your Favorites</h1>
+        </div>
+        <div class="account-buttons">
+            <a href="{% url 'favorites' %}" class="favorites-button">Favorites</a>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
@@ -48,7 +61,42 @@
       window.location.href = "{% url 'login' %}"; // Redirect to login page
   });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+    const userGreetingDiv = document.getElementById('userGreeting');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutButton = document.getElementById('logoutButton');
 
-<script src="{% static 'assets/script/account-script.js' %}"></script>
+    if (userData) {
+    // User is logged in, show greeting
+    userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
+    userGreetingDiv.style.cursor = 'pointer';
+
+    // Toggle dropdown menu on click
+    userGreetingDiv.addEventListener('click', function() {
+    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+    } else {
+    // User is not logged in, show sign-in button
+    userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
+    }
+
+    // Log out logic
+    logoutButton.addEventListener('click', function() {
+    localStorage.removeItem('userData');
+    localStorage.removeItem('loggedInUserId');
+    window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+    });
+
+    // Hide dropdown when clicking outside of it
+    document.addEventListener('click', function(event) {
+    if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.style.display = 'none';
+    }
+    });
+    });
+</script>
+<script src="{% static 'script/accountScript.js' %}"></script>
 </body>
 </html>

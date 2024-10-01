@@ -16,6 +16,9 @@
                 <img src="{% static 'logo.png' %}" alt="logo" class="logo">
             </button>
             <div class="signin-container">
+                <button onClick="window.location.href='{% url 'search_places' %}';" class="search-header-button">
+                    <img src="{% static 'search-icon.png' %}" alt="search-icon" style="min-width:120%;">
+                </button>
                 <div id="userGreeting" class="user-greeting"></div>
                 <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
                     <a href="{% url 'account' %}" class="dropdown-link">My Account</a>

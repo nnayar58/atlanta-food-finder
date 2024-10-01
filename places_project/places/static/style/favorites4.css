@@ -6,11 +6,16 @@ html, body {
     padding: 0; /* Remove default padding */
     width: 100vw;
     height: 100vh;
+    background-image: url('../background.png');
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
@@ -98,34 +103,32 @@ html, body {
 }
 .favorites-container {
     max-width: 800px; /* Limit the width of the container */
-    margin: auto; /* Center the container */
+    margin: 0px auto; /* Center the container */
     background: #fff; /* White background for the container */
     padding: 20px; /* Add padding inside the container */
     border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 h2 {
-    color: black;
+    color: #4a5e4b;
     font-family: 'Encode Sans', sans-serif;
-    font-weight: 600;
-    font-size: 40px;
+    font-weight: 500;
+    font-size: 35px;
     text-align: center;
-    margin: 20px;
-
+    margin-bottom: 0px;
 }
 
 .favorite-item {
-    border: 1px solid #ddd; /* Light border around each favorite item */
-    border-radius: 5px; /* Rounded corners for each item */
+    border: 3px solid #e0ecdc; /* Light border around each favorite item */
+    border-radius: 10px; /* Rounded corners for each item */
     padding: 15px; /* Padding inside each item */
     margin: 15px 0; /* Space between items */
     background-color: #fdfdfd; /* Slightly different background for items */
-    transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+    transition: box-shadow 0.2s; /* Smooth transition for hover effect */
 }
 
 .favorite-item:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+    box-shadow: 0 0px 25px rgba(170, 204, 159, .8); /* Shadow effect on hover */
 }
 
 .favorite-item h5 {
@@ -137,7 +140,6 @@ h2 {
     margin: 5px 0; /* Slight margin between paragraphs */
     color: #666; /* Gray color for text */
 }
-
 
 .user-greeting {
    padding: 10px 20px;
@@ -179,4 +181,15 @@ h2 {
 .dropdown-link:hover {
     background-color: rgba(0, 0, 0, 0.05);
     cursor: pointer;
+}
+
+.search-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+    border-radius: 12px;
+    border:none;
+    margin-right:5px;
 }
