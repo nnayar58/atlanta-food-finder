@@ -251,15 +251,23 @@ function createStarRating(rating) {
     return starsHtml;
 }
 
-// Function to save a favorite restaurant
+// locally save favorites
 function saveFavorite(place) {
-    if (!favorites.find(fav => fav.place_id === place.place_id)) { // Check if already favorited
-        favorites.push(place); // Add to favorites
-        localStorage.setItem('favorites', JSON.stringify(favorites)); // Save to local storage
-        alert(`${place.name} has been added to your favorites!`);
-    } else {
-        alert(`${place.name} is already in your favorites!`);
+    const userId = localStorage.getItem('loggedInUserId');
+    if (!userId) {
+        alert('You need to be logged in to save favorites');
+        return;
     }
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const alreadyFavorites = favorites.some(fav.place_id === place.place_id);
+    if (alreadyFavorites) {
+        alert('${place.name} is already in your favorites!');
+        return;
+    }
+    favorites.push(place);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    alert('${place.name} has been added to your favorites!');
 }
 
 // Function to set up event listeners for both search forms
