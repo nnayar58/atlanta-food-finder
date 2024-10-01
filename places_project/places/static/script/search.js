@@ -123,12 +123,17 @@ function addMarkers(places) {
         });
 
         // Create an info window with a "See More" button
+        const priceRange = place.price_level ? `$${'$'.repeat(place.price_level)}` : '$$';
         const infoWindowContent = `
-            <h5>${place.name}</h5>
-            <p>${place.formatted_address}</p>
-            <p>Rating: ${place.rating || "No rating"}</p>
-            <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
+            <div style="background-color: rgba(85, 153, 89, 0.1); padding:10px 10px; padding-top: 5px; border-radius:5px;">
+                <h5><span style="font-size: 20px;">${place.name}</span></h5>
+                <p>${place.formatted_address}</p>
+                <p><span style="font-weight: 600;">Rating: </span>${place.rating} ${createStarRating(place.rating)}</p>
+                <p><span style="font-weight: 600;">Price Range: </span> ${priceRange}</p>
+                <a href="/restaurant/${place.place_id}" style="margin: 0px;" class="see-more-button">See More</a>
+            </div>
         `;
+
 
         const infoWindow = new google.maps.InfoWindow({
             content: infoWindowContent,
@@ -179,15 +184,16 @@ function updateResultsList(places) {
     atlantaPlaces.forEach(place => {
         const listItem = document.createElement('li');
         listItem.classList.add('list-group-item');
-        const listItemContent = `
-            <h5>${place.name}</h5>
-            <p>${place.formatted_address}</p>
-            <p>Rating: ${place.rating} ${createStarRating(place.rating)}</p>
-            <p>Location: <strong>${place.geometry.location.lat}, ${place.geometry.location.lng}</strong></p>
-            <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
-            <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
-        `;
-        listItem.innerHTML = listItemContent;
+        const priceRange = place.price_level ? `$${'$'.repeat(place.price_level)}` : '$$';
+            const listItemContent = `
+                <h5>${place.name}</h5>
+                <p>${place.formatted_address}</p>
+                <p><span style="font-weight: 600;">Rating: </span>${place.rating} ${createStarRating(place.rating)}</p>
+                <p><span style="font-weight: 600;">Price Range: </span> ${priceRange}</p>
+                <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
+                <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
+            `;
+            listItem.innerHTML = listItemContent;
 
         resultsList.appendChild(listItem);
     });
@@ -285,7 +291,7 @@ function setupSearchForm(formId) {
             currentPlaces = data.results; // Store the fetched places
             addMarkers(currentPlaces); // Call function to add markers to the map
             updateResultsList(sortPlaces(currentPlaces, 'distance')); // Call function to update the results list
-        })        
+        })
         .catch(error => console.error('Error fetching places:', error));
     });
 }

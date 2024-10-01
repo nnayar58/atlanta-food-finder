@@ -271,14 +271,16 @@ html, body {
 .list-group-item h5 {
     padding-top: 10px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 0px;
+    margin-left: 5px;
 }
 
 .list-group-item p {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-color: #454545;
+    margin-left: 5px;
 }
 
 .no-results {
@@ -310,7 +312,8 @@ html, body {
     border: solid;
     border-width: 2px;
     border-color: #85b381;
-
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .favorites-link {

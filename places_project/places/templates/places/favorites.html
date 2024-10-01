@@ -38,14 +38,15 @@
                 favoritesContainer.innerHTML = '<p>You have no favorite restaurants saved.</p>';
             } else {
                 favorites.forEach((favorite, index) => {
+                    const priceRange = favorite.price_level ? '$'.repeat(favorite.price_level) : 'Not Available';
                     const favoriteItem = document.createElement('div');
                     favoriteItem.classList.add('favorite-item'); // Add the class for styling
                     favoriteItem.innerHTML = `
                         <h5>${favorite.name || 'Unknown Restaurant'}</h5>
                         <p>${favorite.formatted_address || 'Unknown Address'}</p>
                         <p>Rating: ${favorite.rating !== undefined ? favorite.rating : 'N/A'}</p>
-                        <p>Location: ${favorite.geometry ? favorite.geometry.location.lat : 'N/A'}, ${favorite.geometry ? favorite.geometry.location.lng : 'N/A'}</p>
-                        <button class="remove-button" data-index="${index}">Remove</button> <!-- Remove button -->
+                        <p>Price Range: <strong>${priceRange}</strong></p>
+                        <button class="remove-button" data-index="${index}">Remove</button>
                     `;
                     favoritesContainer.appendChild(favoriteItem);
                 });

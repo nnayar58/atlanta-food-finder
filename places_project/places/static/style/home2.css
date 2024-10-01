@@ -143,7 +143,7 @@ body {
     margin-top: 5px;
 }
 .slogan4 {
-    color: black;
+    color: #4a5e4b;
     font-family: 'Encode Sans', sans-serif;
     font-weight: 500;
     font-size: 30px;
@@ -258,4 +258,13 @@ body {
 
 .see-more-button {
     margin: 10px 0px;
+}
+
+.star {
+    color: lightgray;
+    font-size: 16px;
+}
+
+.star.filled {
+    color: gold;
 }
