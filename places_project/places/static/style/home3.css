@@ -283,6 +283,7 @@ body {
 }
 
 .dropdown-menu {
+    margin-top:19px;
     position: absolute;
     top: 60px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
@@ -292,6 +293,7 @@ body {
     z-index: 1000;
     display: none;
     padding: 10px 0;
+    margin-right: 5px;
 }
 
 .dropdown-link {

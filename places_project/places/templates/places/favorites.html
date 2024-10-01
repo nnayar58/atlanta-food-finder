@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Favorites</title>
-    <link rel="stylesheet" href="{% static 'style/favorites.css' %}">
+    <link rel="stylesheet" href="{% static 'style/favorites2.css' %}">
 </head>
 <body>
 <div class="container">
@@ -15,8 +15,12 @@
         </button>
         <h2>Your Favorite Restaurants</h2>
         <div class="signin-container">
-            <button class="favorites-link" onclick="window.location.href='{% url 'favorites' %}';">View Favorites</button>
-            <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+            <div id="userGreeting" class="user-greeting"></div>
+            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="{% url 'account' %}" class="dropdown-link">My Account</a>
+                <a href="{% url 'favorites' %}" class="dropdown-link">My Favorites</a>
+                <a href="#" id="logoutButton" class="dropdown-link">Log Out</a>
+            </div>
         </div>
     </div>
     <div class="favorites-container">
@@ -67,6 +71,44 @@
             if (event.target.classList.contains('remove-button')) {
                 const index = event.target.getAttribute('data-index');
                 removeFavorite(index); // Remove the favorite restaurant
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+        const userGreetingDiv = document.getElementById('userGreeting');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const logoutButton = document.getElementById('logoutButton');
+
+        if (userData) {
+            // User is logged in, show greeting
+            userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
+            userGreetingDiv.style.cursor = 'pointer';
+
+            // Toggle dropdown menu on click
+            userGreetingDiv.addEventListener('click', function() {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        } else {
+            // User is not logged in, show sign-in button
+            userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
+        }
+
+        // Log out logic
+        logoutButton.addEventListener('click', function() {
+            localStorage.removeItem('userData');
+            localStorage.removeItem('loggedInUserId');
+            window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+        });
+
+        // Hide dropdown when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
             }
         });
     });

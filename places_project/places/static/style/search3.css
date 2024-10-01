@@ -390,15 +390,21 @@ html, body {
     color: #007bff;
 }
 
-
 .user-greeting {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 1000;
-    color: white;
-    cursor: pointer;
+   padding: 10px 20px;
+   background-color: #e0ecdc;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 20px;
+   color: black;
+   border: none;
+   border-radius: 50px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
 }
 
 .dropdown-menu {
+    margin-top:19px;
     position: absolute;
     top: 60px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
@@ -408,6 +414,7 @@ html, body {
     z-index: 1000;
     display: none;
     padding: 10px 0;
+    margin-right: 5px;
 }
 
 .dropdown-link {
