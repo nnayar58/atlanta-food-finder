@@ -18,6 +18,29 @@ def favorites(request):
 def account(request):
     return render(request, 'places/account.html')
 
+def get_top_restaurants(request):
+    search_term = request.GET.get('search', 'best')  # Default search term is 'best'
+    api_key = config('GOOGLE_API_KEY')
+    location = '33.7490,-84.3880'  # Example coordinates for Atlanta
+    radius = 5000  # Search radius in meters
+    url = f'https://maps.googleapis.com/maps/api/place/textsearch/json?query={search_term}+restaurants&location={location}&radius={radius}&key={api_key}'
+
+    response = requests.get(url)
+    data = response.json()
+
+    restaurants = []
+    for place in data.get('results', [])[:10]:
+        restaurants.append({
+            'name': place['name'],
+            'address': place.get('formatted_address', 'No address found'),
+            'rating': place.get('rating', 'N/A'),
+            'price_level': place.get('price_level', None),
+            'place_id': place['place_id'],  # Add place_id here
+        })
+
+
+    return JsonResponse({'restaurants': restaurants})
+
 def search_places(request):
     results = []
     form = PlaceSearchForm()
@@ -56,7 +79,7 @@ def restaurant_detail(request, place_id):
     # Fetch detailed information about the restaurant from Google Places API
     api_key = config('GOOGLE_API_KEY')
     url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&key={api_key}"
-    
+
     response = requests.get(url)
     restaurant_data = response.json().get('result', {})
 
