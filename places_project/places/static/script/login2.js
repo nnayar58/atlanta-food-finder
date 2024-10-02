@@ -38,5 +38,5 @@ submitResetPassword.addEventListener('click', function () {
     setTimeout(function () {
         signInForm.style.display = "block";
         resetPasswordContainer.style.display = "none";
-    }, 2000);
+    }, 3000);
 });

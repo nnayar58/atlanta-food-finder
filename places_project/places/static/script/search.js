@@ -302,10 +302,7 @@ function setupSearchForm(formId) {
 // Event listener to setup search forms when the document is loaded
 document.addEventListener('DOMContentLoaded', function () {
     setupSearchForm('#places-search-form'); // For search.html
-    setupSearchForm('#home-search-form'); // For home.html
-
     const params = getQueryParams();
-    console.log("URL Parameters:", params);  // Log the extracted query and search type
 
     const query = params.query;
     const searchType = params.searchType;
@@ -316,20 +313,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Update search type and placeholder based on button click for home.html
-    document.getElementById('name-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'name';
-        document.getElementById('home-query').placeholder = 'Search by Restaurant Name';
-    });
-
-    document.getElementById('cuisine-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'cuisine';
-        document.getElementById('home-query').placeholder = 'Search by Cuisine';
-    });
-
-    document.getElementById('location-button').addEventListener('click', () => {
-        document.getElementById('home-search-type').value = 'location';
-        document.getElementById('home-query').placeholder = 'Search by Location';
-    });
 
     // Update search type and placeholder based on button click for search.html
     document.getElementById('search-name').addEventListener('click', () => {
