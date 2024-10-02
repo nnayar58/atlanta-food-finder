@@ -127,6 +127,7 @@ input:focus~label,input:not(:placeholder-shown)~label{
     margin-top: -15px;
     text-align:right;
     font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     font-size:1rem;
     margin-bottom:1rem;
 
@@ -206,4 +207,4 @@ button:hover{
 #signUpButton:hover, #signInButton:hover {
     text-decoration:underline;
     color: #608a5b;
-} 
+}

@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register & Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'style/login.css' %}">
+    <link rel="stylesheet" href="{% static 'style/login2.css' %}">
     <script>
         const accountUrl = "{% url 'account' %}";
         const loginUrl = "{% url 'login' %}";
     </script>
-    <script type="module" src="../../static/script/firebaseauth.js"></script>
 </head>
 <body>
 <div class="login-header-container">
@@ -49,10 +48,6 @@
     <p class="or">
         ---------- or ----------
     </p>
-    <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-    </div>
     <div class="links">
         <div class="text">Already have an account?</div>
         <button id="signInButton">Sign In</button>
@@ -74,23 +69,35 @@
             <input type="password" id="password" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
-        <p class="recover">
-            <a href="#">Recover Password</a>
-        </p>
+        <div class="forgot-container" style="display: flex; justify-content: flex-end;">
+            <button id="forgotPasswordButton">Forgot Password?</button>
+        </div>
         <button class="btn" id="submitSignIn">Sign In</button>
     </form>
     <p class="or">
         ---------- or ----------
     </p>
-    <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-    </div>
     <div class="links">
         <div class="text">Don't have an account yet?</div>
         <button id="signUpButton">Sign Up</button>
     </div>
 </div>
-<script src="../../static/script/login.js"></script>
+
+<div class="container" id="resetPasswordContainer" style="display:none;">
+    <h1 class="form-title">Reset Password</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div id="resetPasswordMessage"></div>
+        <input type="email" id="resetEmail" placeholder="Enter your email" required>
+        <button class="btn" id="submitResetPassword">Submit</button>
+    </form>
+    <div class="links">
+        <button style="margin:0px; margin-left:-80px;" id="recoverSignInButton">Sign In</button>
+        <button style="margin:0px; margin-right:-80px;" id="recoverSignUpButton">Sign Up</button>
+    </div>
+</div>
+
+<script type="module" src="../../static/script/firebaseauth.js"></script>
+<script src="../../static/script/login2.js"></script>
 </body>
 </html>
