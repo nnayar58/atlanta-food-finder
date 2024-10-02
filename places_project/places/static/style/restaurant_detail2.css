@@ -133,16 +133,12 @@ textarea::placeholder {
 }
 
 .signin {
-    padding: 10px 20px;
-    background-color: #e0ecdc;
+    background-color: rgb(0,0,0,0);
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 20px;
     color: black;
     border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .signin:hover {
@@ -175,4 +171,56 @@ textarea::placeholder {
 
 .map-column {
     flex: 0 0 600px;
+}
+
+.user-greeting {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu {
+    margin-top:19px;
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: white;
+    box-shadow: 0px 5px 25px 7px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    display: none;
+    padding: 10px 0;
+    margin-right: 5px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.search-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+    border-radius: 12px;
+    border:none;
+    margin-right:5px;
 }

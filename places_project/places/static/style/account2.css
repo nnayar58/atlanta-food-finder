@@ -11,11 +11,11 @@ body {
     width: 100vw;
     height: 100vh;
 }
-  
+
 .login-container {
 
 }
-  
+
 .login-header-container {
     display: flex;
     align-items: center;
@@ -69,7 +69,7 @@ h2 {
     text-align: center;
     margin-bottom: 0px;
 }
-  
+
 .main-container {
     background:#fff;
     width:450px;
@@ -80,7 +80,7 @@ h2 {
     box-shadow:0px 0px 30px 0px rgba(170, 204, 159, .8);
 }
 
-  
+
 .account-buttons {
     display: flex;
     justify-content: space-between;
@@ -112,14 +112,14 @@ h2 {
 .favorites-button:hover {
     background-color: #5e8f62;
 }
-  
+
 .account-info-container {
     padding: 20px;
     border-radius: 8px;
     width: 100%;
     text-align: left;
 }
-  
+
 .account-text {
     color: #4a5e4b;
     font-family: 'Encode Sans', sans-serif;
@@ -160,7 +160,14 @@ h2 {
     gap: 10px;
     padding: 0px 20px;
 }
-
+.signin {
+    background-color: rgb(0,0,0,0);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+}
 .header-text {
     font-family: 'Encode Sans', sans-serif;
     font-size: 24px;

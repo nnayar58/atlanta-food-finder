@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ restaurant.name|default:"Restaurant Details" }}</title>
-    <link rel="stylesheet" href="{% static 'style/restaurant_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'style/restaurant_detail2.css' %}">
 </head>
 <body>
 <div class="container">
@@ -14,8 +14,15 @@
             <img src="{% static 'logo.png' %}" alt="logo" class="logo">
         </button>
         <div class="signin-container">
-            <button class="favorites-link" onclick="window.location.href='{% url 'favorites' %}';">View Favorites</button>
-            <button onClick="window.location.href='{% url 'login' %}';" id="signupButton" class="signin">Sign In</button>
+            <button onClick="window.location.href='{% url 'search_places' %}';" class="search-header-button">
+                <img src="{% static 'search-icon.png' %}" alt="search-icon" style="min-width:120%;">
+            </button>
+            <div id="userGreeting" class="user-greeting"></div>
+            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="{% url 'account' %}" class="dropdown-link">My Account</a>
+                <a href="{% url 'favorites' %}" class="dropdown-link">My Favorites</a>
+                <a href="#" id="logoutButton" class="dropdown-link">Log Out</a>
+            </div>
         </div>
     </div>
     <div class="main-content">
@@ -65,6 +72,42 @@
             map: map,
         });
     }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+        const userGreetingDiv = document.getElementById('userGreeting');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const logoutButton = document.getElementById('logoutButton');
+
+        if (userData) {
+            // User is logged in, show greeting
+            userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
+            userGreetingDiv.style.cursor = 'pointer';
+
+            // Toggle dropdown menu on click
+            userGreetingDiv.addEventListener('click', function() {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        } else {
+            // User is not logged in, show sign-in button
+            userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
+        }
+
+        // Log out logic
+        logoutButton.addEventListener('click', function() {
+            localStorage.removeItem('userData');
+            localStorage.removeItem('loggedInUserId');
+            window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+        });
+
+        // Hide dropdown when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
 </body>
