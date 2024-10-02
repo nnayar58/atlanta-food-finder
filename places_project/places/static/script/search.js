@@ -152,6 +152,7 @@ function addMarkers(places) {
     google.maps.event.trigger(map, 'resize');
 }
 
+
 function updateResultsList(places) {
     const resultsContainer = document.getElementById('results-container');
     const resultsList = document.createElement('ul');
@@ -185,17 +186,16 @@ function updateResultsList(places) {
         listItem.classList.add('list-group-item');
         const cuisineTypes = extractCuisineTypes(place);
         const priceRange = place.price_level ? `$${'$'.repeat(place.price_level)}` : '$$';
-
-        const listItemContent = `
-            <h5>${place.name}</h5>
-            <p>${place.formatted_address}</p>
-            <p><span style="font-weight: 600;">Rating: </span>${place.rating} ${createStarRating(place.rating)}</p>
-            <p><span style="font-weight: 600;">Price Range: </span> ${priceRange}</p>
-            <p><span style="font-weight: 600;">Cuisine: </span>${cuisineTypes || 'General/Fusion'}</p>
-            <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
-            <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
-        `;
-        listItem.innerHTML = listItemContent;
+            const listItemContent = `
+                <h5>${place.name}</h5>
+                <p>${place.formatted_address}</p>
+                <p><span style="font-weight: 600;">Rating: </span>${place.rating} ${createStarRating(place.rating)}</p>
+                <p><span style="font-weight: 600;">Price Range: </span> ${priceRange}</p>
+                <p><span style="font-weight: 600;">Cuisine: </span>${cuisineTypes || 'General/Fusion'}</p>
+                <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
+                <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
+            `;
+            listItem.innerHTML = listItemContent;
 
         resultsList.appendChild(listItem);
     });
@@ -210,47 +210,6 @@ function updateResultsList(places) {
             saveFavorite(selectedPlace);
         }
     });
-}
-
-function extractCuisineTypes(place) {
-    const cuisineMapping = {
-        indian: ['Indian', ['india','curry', 'naan', 'biryani', 'paneer', 'dal', 'samosa', 'masala', 'chutney', 'vindaloo', 'tandoori', 'pulao', 'bhog', 'dhabha']],
-        chinese: ['Chinese', ['china','dumplings', 'noodles', 'wonton', 'fried rice', 'kung pao', 'spring rolls', 'tofu', 'sweet and sour', 'chow mein', 'egg roll', 'guan', 'chao']],
-        italian: ['Italian', ['italy','pasta', 'pizza', 'risotto', 'lasagna', 'gelato', 'focaccia', 'pesto', 'cannoli', 'bruschetta', 'carpaccio', 'trattoria', 'osteria']],
-        mexican: ['Mexican', ['mexico', 'taco', 'burrito', 'quesadilla', 'enchilada', 'guacamole', 'salsa', 'tortilla', 'casa', 'cantina', 'latina', 'tamale', 'chile relleno', 'restaurante', 'comida']],
-        japanese: ['Japanese', ['japan', 'sushi', 'ramen', 'tempura', 'miso', 'teriyaki', 'udon', 'yakitori', 'sashimi', 'bento', 'onigiri', 'shokudo', 'izakaya']],
-        american: ['American', ['america', 'burger', 'fries', 'shake', 'hot dog', 'bbq', 'wings', 'tender', 'meatloaf', 'apple pie', 'steak', 'diner', 'eatery']],
-        korean: ['Korean', ['korea','kimchi', 'bulgogi', 'bibimbap', 'tteokbokki', 'galbi', 'japchae', 'kimbap', 'soju', 'doenjang', 'sikdang']],
-        mediterranean: ['Mediterranean', ['hummus', 'falafel', 'tabbouleh', 'tzatziki', 'pita', 'gyros', 'moussaka', 'olive', 'feta', 'taverna']],
-        thai: ['Thai', ['thailand','pad thai', 'green curry', 'tom yum', 'spring roll', 'satay', 'massaman', 'som tam', 'drunken noodles', 'larb', 'restaurang']],
-        african: ['African', ['jollof', 'injera', 'tagine', 'bunny chow', 'biltong', 'samosa', 'piri piri', 'cassava', 'yassa']],
-        vietnamese: ['Vietnamese', ['vietnam','pho', 'banh mi', 'spring roll', 'bun bo', 'rice noodle', 'nuoc cham', 'curry', 'goi', 'cha gio', 'quan', 'hàng', 'anh', 'saigon', 'nam']],
-        french: ['French', ['france', 'paris', 'croissant', 'baguette', 'escargot', 'ratatouille', 'quiche', 'crepe', 'macaron', 'bouillabaisse', 'coq au vin']],
-        turkish: ['Turkish', ['kebap', 'doner', 'baklava', 'meze', 'lahmacun', 'pide', 'borek', 'kofte', 'simit', 'manti']],
-        asian: ['Asian', ['asian', 'asia']]
-    };
-
-
-    // Collect cuisines from the types array
-    const types = place.types || [];
-    const cuisines = types
-        .filter(type => cuisineMapping[type.toLowerCase()]) // Match lowercase types
-        .map(type => cuisineMapping[type.toLowerCase()][0]); // Map to the display name
-
-    // Check the name for cuisine keywords
-    const nameLowerCase = place.name.toLowerCase();
-    for (const [key, [value, keywords]] of Object.entries(cuisineMapping)) {
-        // Check if the name contains either the cuisine type or any of the keywords
-        if (nameLowerCase.includes(key) || keywords.some(keyword => nameLowerCase.includes(keyword))) {
-            // Avoid duplicates by checking if it’s already included
-            if (!cuisines.includes(value)) {
-                cuisines.push(value);
-            }
-        }
-    }
-
-    // Return the cuisines as a string or null if none found
-    return cuisines.length > 0 ? cuisines.join(', ') : null;
 }
 
 
@@ -294,23 +253,15 @@ function createStarRating(rating) {
     return starsHtml;
 }
 
-// locally save favorites
+// Function to save a favorite restaurant
 function saveFavorite(place) {
-    const userId = localStorage.getItem('loggedInUserId');
-    if (!userId) {
-        alert('You need to be logged in to save favorites');
-        return;
+    if (!favorites.find(fav => fav.place_id === place.place_id)) { // Check if already favorited
+        favorites.push(place); // Add to favorites
+        localStorage.setItem('favorites', JSON.stringify(favorites)); // Save to local storage
+        alert(`${place.name} has been added to your favorites!`);
+    } else {
+        alert(`${place.name} is already in your favorites!`);
     }
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const alreadyFavorites = favorites.some(fav.place_id === place.place_id);
-    if (alreadyFavorites) {
-        alert('${place.name} is already in your favorites!');
-        return;
-    }
-    favorites.push(place);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    alert('${place.name} has been added to your favorites!');
 }
 
 // Function to set up event listeners for both search forms
@@ -495,3 +446,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     applyButtonColor(homeButtons, '#fff', 'rgba(85, 153, 89, 0.6)');
 });
+
+function extractCuisineTypes(place) {
+    const cuisineMapping = {
+        indian: ['Indian', ['india','curry', 'naan', 'biryani', 'paneer', 'dal', 'samosa', 'masala', 'chutney', 'vindaloo', 'tandoori', 'pulao', 'bhog', 'dhabha']],
+        chinese: ['Chinese', ['china','dumplings', 'noodles', 'wonton', 'fried rice', 'kung pao', 'spring rolls', 'tofu', 'sweet and sour', 'chow mein', 'egg roll', 'guan', 'chao']],
+        italian: ['Italian', ['italy','pasta', 'pizza', 'risotto', 'lasagna', 'gelato', 'focaccia', 'pesto', 'cannoli', 'bruschetta', 'carpaccio', 'trattoria', 'osteria']],
+        mexican: ['Mexican', ['mexico', 'taco', 'burrito', 'quesadilla', 'enchilada', 'guacamole', 'salsa', 'tortilla', 'casa', 'cantina', 'latina', 'tamale', 'chile relleno', 'restaurante', 'comida']],
+        japanese: ['Japanese', ['japan', 'sushi', 'ramen', 'tempura', 'miso', 'teriyaki', 'udon', 'yakitori', 'sashimi', 'bento', 'onigiri', 'shokudo', 'izakaya']],
+        american: ['American', ['america', 'burger', 'fries', 'shake', 'hot dog', 'bbq', 'wings', 'tender', 'meatloaf', 'apple pie', 'steak', 'diner', 'eatery']],
+        korean: ['Korean', ['korea','kimchi', 'bulgogi', 'bibimbap', 'tteokbokki', 'galbi', 'japchae', 'kimbap', 'soju', 'doenjang', 'sikdang']],
+        mediterranean: ['Mediterranean', ['hummus', 'falafel', 'tabbouleh', 'tzatziki', 'pita', 'gyros', 'moussaka', 'olive', 'feta', 'taverna']],
+        thai: ['Thai', ['thailand','pad thai', 'green curry', 'tom yum', 'spring roll', 'satay', 'massaman', 'som tam', 'drunken noodles', 'larb', 'restaurang']],
+        african: ['African', ['jollof', 'injera', 'tagine', 'bunny chow', 'biltong', 'samosa', 'piri piri', 'cassava', 'yassa']],
+        vietnamese: ['Vietnamese', ['vietnam','pho', 'banh mi', 'spring roll', 'bun bo', 'rice noodle', 'nuoc cham', 'curry', 'goi', 'cha gio', 'quan', 'hàng', 'anh', 'saigon', 'nam']],
+        french: ['French', ['france', 'paris', 'croissant', 'baguette', 'escargot', 'ratatouille', 'quiche', 'crepe', 'macaron', 'bouillabaisse', 'coq au vin']],
+        turkish: ['Turkish', ['kebap', 'doner', 'baklava', 'meze', 'lahmacun', 'pide', 'borek', 'kofte', 'simit', 'manti']],
+        asian: ['Asian', ['asian', 'asia']]
+    };
+
+
+    // Collect cuisines from the types array
+    const types = place.types || [];
+    const cuisines = types
+        .filter(type => cuisineMapping[type.toLowerCase()]) // Match lowercase types
+        .map(type => cuisineMapping[type.toLowerCase()][0]); // Map to the display name
+
+    // Check the name for cuisine keywords
+    const nameLowerCase = place.name.toLowerCase();
+    for (const [key, [value, keywords]] of Object.entries(cuisineMapping)) {
+        // Check if the name contains either the cuisine type or any of the keywords
+        if (nameLowerCase.includes(key) || keywords.some(keyword => nameLowerCase.includes(keyword))) {
+            // Avoid duplicates by checking if it’s already included
+            if (!cuisines.includes(value)) {
+                cuisines.push(value);
+            }
+        }
+    }
+
+    // Return the cuisines as a string or null if none found
+    return cuisines.length > 0 ? cuisines.join(', ') : null;
+}
