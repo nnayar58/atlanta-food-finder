@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
 
 html, body {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    margin: 0;
+    padding: 0;
     width: 100vw;
     height: 100vh;
     background-image: url('../background.png');
@@ -98,11 +98,13 @@ html, body {
     transition: background-color 0.3s ease;
 }
 .favorites-container {
-    max-width: 800px; /* Limit the width of the container */
-    margin: 0px auto; /* Center the container */
-    background: none; /* White background for the container */
-    padding: 20px; /* Add padding inside the container */
-    border-radius: 8px; /* Rounded corners */
+    max-width: 800px;
+    margin: 0px auto;
+    background: none;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 63vh;
+    overflow-y: auto;
 }
 
 h2 {
@@ -115,26 +117,26 @@ h2 {
 }
 
 .favorite-item {
-    border: 3px solid #e0ecdc; /* Light border around each favorite item */
-    border-radius: 10px; /* Rounded corners for each item */
-    padding: 15px; /* Padding inside each item */
-    margin: 15px 0; /* Space between items */
-    background-color: #fdfdfd; /* Slightly different background for items */
-    transition: box-shadow 0.2s; /* Smooth transition for hover effect */
+    border: 3px solid #e0ecdc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #fdfdfd;
+    transition: box-shadow 0.2s;
 }
 
 .favorite-item:hover {
-    box-shadow: 0 0px 25px rgba(170, 204, 159, .8); /* Shadow effect on hover */
+    box-shadow: 0 0px 25px rgba(170, 204, 159, .8);
 }
 
 .favorite-item h5 {
-    margin: 0; /* Remove default margin */
-    color: #007bff; /* Color for restaurant name */
+    margin: 0;
+    color: #007bff;
 }
 
 .favorite-item p {
-    margin: 5px 0; /* Slight margin between paragraphs */
-    color: #666; /* Gray color for text */
+    margin: 5px 0;
+    color: #666;
 }
 
 .user-greeting {
@@ -153,8 +155,8 @@ h2 {
 .dropdown-menu {
     margin-top:19px;
     position: absolute;
-    top: 60px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
+    top: 60px;
+    right: 20px;
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;

@@ -219,7 +219,7 @@ button:hover{
     color: #608a5b;
 }
 #resetEmail::placeholder {
-    color: #888; /* Change this color as needed */
+    color: #888;
     opacity: 1;
     font-family: 'Open Sans', sans-serif;
 }

@@ -52,7 +52,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGVTN23e2n3JsjDYxkhsNAfRlrSMxGU0&libraries=places"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
         const userGreetingDiv = document.getElementById('userGreeting');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const logoutButton = document.getElementById('logoutButton');
@@ -75,7 +75,7 @@
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('userData');
             localStorage.removeItem('loggedInUserId');
-            window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+            window.location.href = '{% url 'home' %}';
         });
 
         // Hide dropdown when clicking outside of it

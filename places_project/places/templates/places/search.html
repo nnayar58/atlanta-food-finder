@@ -75,40 +75,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchType = params.searchType;
 
     if (query) {
-        // Call the searchPlaces function (in your search.js) to update the map and results
         searchPlaces(query, searchType);
     }
 });
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-         const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+         const userData = JSON.parse(localStorage.getItem('userData'));
          const userGreetingDiv = document.getElementById('userGreeting');
          const dropdownMenu = document.getElementById('dropdownMenu');
          const logoutButton = document.getElementById('logoutButton');
 
          if (userData) {
-             // User is logged in, show greeting
              userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
              userGreetingDiv.style.cursor = 'pointer';
 
-             // Toggle dropdown menu on click
              userGreetingDiv.addEventListener('click', function() {
                  dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
              });
          } else {
-             // User is not logged in, show sign-in button
              userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
          }
 
-         // Log out logic
          logoutButton.addEventListener('click', function() {
              localStorage.removeItem('userData');
              localStorage.removeItem('loggedInUserId');
-             window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+             window.location.href = '{% url 'home' %}';
          });
 
-         // Hide dropdown when clicking outside of it
          document.addEventListener('click', function(event) {
              if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
                  dropdownMenu.style.display = 'none';
@@ -117,10 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
      });
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=geometry"></script>
 <script src="{% static 'script/search.js' %}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&libraries=geometry"></script>
 <script>
-    // Function to extract URL parameters (e.g., the search query and search type)
     function getQueryParams() {
         const params = new URLSearchParams(window.location.search);
         return {
@@ -135,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchType = params.searchType;
 
         if (query) {
-            // Call the searchPlaces function to update the map and display results
             searchPlaces(query, searchType);
         }
     });

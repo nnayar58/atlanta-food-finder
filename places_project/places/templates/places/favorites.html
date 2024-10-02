@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Favorites</title>
-    <link rel="stylesheet" href="{% static 'style/favorites5.css' %}">
+    <link rel="stylesheet" href="{% static 'style/favorites6.css' %}">
 </head>
 <body>
 <div class="container">
@@ -39,7 +39,6 @@
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         function updateFavorites() {
-            // Clear the current favorites displayed
             favoritesContainer.innerHTML = '';
 
             if (favorites.length === 0) {
@@ -47,7 +46,7 @@
             } else {
                 favorites.forEach((favorite, index) => {
                     const favoriteItem = document.createElement('div');
-                    favoriteItem.classList.add('favorite-item'); // Add the class for styling
+                    favoriteItem.classList.add('favorite-item');
                     favoriteItem.innerHTML = `
                         <h5>${favorite.name || 'Unknown Restaurant'}</h5>
                         <p>${favorite.formatted_address || 'Unknown Address'}</p>
@@ -60,21 +59,18 @@
             }
         }
 
-        // Function to remove a favorite restaurant
         function removeFavorite(index) {
-            favorites.splice(index, 1); // Remove the favorite from the array
-            localStorage.setItem('favorites', JSON.stringify(favorites)); // Update local storage
-            updateFavorites(); // Re-render the favorites
+            favorites.splice(index, 1);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavorites();
         }
 
-        // Initial load of favorites
         updateFavorites();
 
-        // Event delegation to handle remove button clicks
         favoritesContainer.addEventListener('click', (event) => {
             if (event.target.classList.contains('remove-button')) {
                 const index = event.target.getAttribute('data-index');
-                removeFavorite(index); // Remove the favorite restaurant
+                removeFavorite(index);
             }
         });
     });
@@ -83,33 +79,28 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const userData = JSON.parse(localStorage.getItem('userData'));  // Get user data from localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
         const userGreetingDiv = document.getElementById('userGreeting');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const logoutButton = document.getElementById('logoutButton');
 
         if (userData) {
-            // User is logged in, show greeting
             userGreetingDiv.innerHTML = `Hello, ${userData.firstName}`;
             userGreetingDiv.style.cursor = 'pointer';
 
-            // Toggle dropdown menu on click
             userGreetingDiv.addEventListener('click', function() {
                 dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
             });
         } else {
-            // User is not logged in, show sign-in button
             userGreetingDiv.innerHTML = '<button onClick="window.location.href=\'{% url 'login' %}\'" class="signin">Sign In</button>';
         }
 
-        // Log out logic
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('userData');
             localStorage.removeItem('loggedInUserId');
-            window.location.href = '{% url 'home' %}';  // Redirect to home page after logout
+            window.location.href = '{% url 'home' %}';
         });
 
-        // Hide dropdown when clicking outside of it
         document.addEventListener('click', function(event) {
             if (!userGreetingDiv.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.style.display = 'none';

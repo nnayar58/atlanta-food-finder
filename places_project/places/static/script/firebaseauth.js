@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getFirestore, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCaksMhL-KOHAK7dU2FbWARAK-fi0eMZ2c",
     authDomain: "atlfoodfinder-36723.firebaseapp.com",
@@ -16,7 +13,6 @@ const firebaseConfig = {
     measurementId: "G-Y1HT45EZ72"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth();

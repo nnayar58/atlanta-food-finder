@@ -152,7 +152,7 @@ h2 {
 }
 
 .logout-button:hover {
-    background-color: #b50000; /* Darker red on hover */
+    background-color: #b50000;
 }
 
 .signin-container {
@@ -195,8 +195,8 @@ h2 {
 .dropdown-menu {
     margin-top:19px;
     position: absolute;
-    top: 60px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
+    top: 60px;
+    right: 20px;
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -232,7 +232,6 @@ h2 {
     margin-right:5px;
 }
 
-/* Mobile Responsive */
 @media (max-width: 600px) {
     .login-container {
         padding: 15px;

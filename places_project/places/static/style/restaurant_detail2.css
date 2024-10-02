@@ -189,8 +189,8 @@ textarea::placeholder {
 .dropdown-menu {
     margin-top:19px;
     position: absolute;
-    top: 60px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
+    top: 60px;
+    right: 20px;
     background-color: white;
     box-shadow: 0px 5px 25px 7px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
