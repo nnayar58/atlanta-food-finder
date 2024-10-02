@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../background.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.home-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.home-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #85b381;
+}
+
+.logo-button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 10px 20px;
+    width: 230px;
+    position: relative;
+}
+
+.logo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    z-index: 1;
+
+}
+
+.logo-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    opacity: 1;
+}
+
+.signin-container {
+    display: flex;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+.signin {
+    background-color: rgb(0,0,0,0);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+ }
+
+.user-greeting:hover {
+    background-color: #cfdeca;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.left-search-container {
+    padding: 20px 20px;
+    margin-bottom: 250px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 30vw;
+    margin-left: 15vw;
+}
+
+.right-search-container {
+    padding: 20px 20px;
+    margin-bottom: 150px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 30vw;
+    margin-right: 15vw;
+
+}
+
+.slogan1 {
+    color: #4a5e4b;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.slogan2 {
+    color: #5f8c62;
+    font-family: 'Encode Sans', sans-serif;
+    margin-top: -10px;
+    font-weight: 650;
+    font-size: 50px;
+}
+.slogan3 {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.slogan4 {
+    color: #4a5e4b;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6CA770;
+    padding: 20px 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+    border-width: 3px;
+    border-color: #e0ecdc;
+    border-style: solid;
+    box-shadow:0 5px 20px 0px rgba(170, 204, 159, .8);
+
+}
+.search-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+    border-radius: 12px;
+    border:none;
+    margin-right:5px;
+}
+
+.search-icon {
+    width: auto;
+    height: auto;
+}
+
+.search-button:hover {
+    background-color: #5e8f62;
+}
+
+.button-text {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    padding-right: 20px;
+}
+
+.scrollable-restaurants {
+    max-height: 400px;            /* Set a max height for the scrollable area */
+    overflow-y: auto;             /* Enable vertical scrolling */
+    padding: 10px;
+    border-width: 4px;
+    border-color: #e0ecdc;
+    border-style: solid;
+    border-radius: 8px;           /* Optional: rounded corners */
+    background-color: #fff;       /* Background color */
+    box-shadow:0px 5px 30px 0px rgba(170, 204, 159, .8);
+}
+
+.restaurant-list {
+    display: flex;
+    flex-direction: column;       /* Stack the restaurant items vertically */
+}
+
+.restaurant-item {
+    color: black;
+    font-family: 'Encode Sans', sans-serif;
+    padding: 10px;
+    border-bottom: 2px solid #eee; /* Separate restaurant items */
+}
+
+.restaurant-item:last-child {
+    border-bottom: none;          /* Remove border from last item */
+}
+
+.see-more-button {
+    padding: 8px 15px;
+    background-color: rgba(85, 153, 89, 0.8);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border-width: 4px;
+    border-color: #c6dbbf;
+    border-style: solid;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.see-more-button:hover {
+    background-color: rgba(75, 122, 77, 0.8);
+}
+
+.restaurant-item {
+    margin-bottom: px; /* Spacing between restaurant items */
+}
+
+.restaurant-name {
+    display: block;
+    margin-bottom: -8px;
+    font-size: 20px;
+}
+
+.restaurant-address {
+    margin-bottom: -5px;
+    display: block;
+}
+
+.restaurant-label {
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.see-more-button {
+    margin: 10px 0px;
+}
+
+.star {
+    color: lightgray;
+    font-size: 16px;
+}
+
+.star.filled {
+    color: gold;
+}
+
+.user-greeting {
+    padding: 10px 20px;
+    background-color: #e0ecdc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu {
+    margin-top:19px;
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: white;
+    box-shadow: 0px 5px 25px 7px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    display: none;
+    padding: 10px 0;
+    margin-right: 5px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
