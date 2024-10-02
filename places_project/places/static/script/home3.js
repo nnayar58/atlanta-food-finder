@@ -7,7 +7,7 @@ async function fetchTopRestaurants(searchTerm = 'best') {
 
     // Function to convert price level number to string
     const getPriceRange = (level) => {
-        if (level === null) return 'N/A'; // Handle cases where price level is not available
+        if (level === null) return '$$'; // Handle cases where price level is not available
         return '$'.repeat(level); // Convert level to corresponding $ string
     };
     // Loop through the top 5 restaurants and add them to the list

@@ -100,7 +100,7 @@ html, body {
 .favorites-container {
     max-width: 800px; /* Limit the width of the container */
     margin: 0px auto; /* Center the container */
-    background: #fff; /* White background for the container */
+    background: none; /* White background for the container */
     padding: 20px; /* Add padding inside the container */
     border-radius: 8px; /* Rounded corners */
 }
