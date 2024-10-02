@@ -191,7 +191,7 @@ function updateResultsList(places) {
             <p>${place.formatted_address}</p>
             <p><span style="font-weight: 600;">Rating: </span>${place.rating} ${createStarRating(place.rating)}</p>
             <p><span style="font-weight: 600;">Price Range: </span> ${priceRange}</p>
-            <p><span style="font-weight: 600;">Cuisine: </span>${cuisineTypes || 'General'}</p>
+            <p><span style="font-weight: 600;">Cuisine: </span>${cuisineTypes || 'General/Fusion'}</p>
             <button class="favorite-button" data-place-id="${place.place_id}">Save to Favorites</button>
             <a href="/restaurant/${place.place_id}" class="see-more-button">See More</a>
         `;
@@ -214,19 +214,20 @@ function updateResultsList(places) {
 
 function extractCuisineTypes(place) {
     const cuisineMapping = {
-        indian: ['Indian', ['curry', 'naan', 'biryani', 'paneer', 'dal', 'samosa', 'masala', 'chutney', 'vindaloo', 'tandoori', 'pulao', 'bhog', 'dhabha']],
-        chinese: ['Chinese', ['dumplings', 'noodles', 'wonton', 'fried rice', 'kung pao', 'spring rolls', 'tofu', 'sweet and sour', 'chow mein', 'egg roll', 'guan', 'chao']],
-        italian: ['Italian', ['pasta', 'pizza', 'risotto', 'lasagna', 'gelato', 'focaccia', 'pesto', 'cannoli', 'bruschetta', 'carpaccio', 'trattoria', 'osteria']],
-        mexican: ['Mexican', ['taco', 'burrito', 'quesadilla', 'enchilada', 'guacamole', 'salsa', 'tortilla', 'el', 'casa', 'cantina', 'latina', 'tamale', 'chile relleno', 'restaurante', 'comida']],
-        japanese: ['Japanese', ['sushi', 'ramen', 'tempura', 'miso', 'teriyaki', 'udon', 'yakitori', 'sashimi', 'bento', 'onigiri', 'shokudo', 'izakaya']],
-        american: ['American', ['burger', 'fries', 'shake', 'hot dog', 'bbq', 'wings', 'tender', 'meatloaf', 'apple pie', 'steak', 'diner', 'eatery']],
-        korean: ['Korean', ['kimchi', 'bulgogi', 'bibimbap', 'tteokbokki', 'galbi', 'japchae', 'kimbap', 'soju', 'doenjang', 'restaurant', 'sikdang']],
-        mediterranean: ['Mediterranean', ['hummus', 'falafel', 'tabbouleh', 'tzatziki', 'pita', 'gyros', 'moussaka', 'olive', 'feta', 'restauran', 'taverna']],
-        thai: ['Thai', ['pad thai', 'green curry', 'tom yum', 'spring roll', 'satay', 'massaman', 'som tam', 'drunken noodles', 'larb', 'restaurang']],
+        indian: ['Indian', ['india','curry', 'naan', 'biryani', 'paneer', 'dal', 'samosa', 'masala', 'chutney', 'vindaloo', 'tandoori', 'pulao', 'bhog', 'dhabha']],
+        chinese: ['Chinese', ['china','dumplings', 'noodles', 'wonton', 'fried rice', 'kung pao', 'spring rolls', 'tofu', 'sweet and sour', 'chow mein', 'egg roll', 'guan', 'chao']],
+        italian: ['Italian', ['italy','pasta', 'pizza', 'risotto', 'lasagna', 'gelato', 'focaccia', 'pesto', 'cannoli', 'bruschetta', 'carpaccio', 'trattoria', 'osteria']],
+        mexican: ['Mexican', ['mexico', 'taco', 'burrito', 'quesadilla', 'enchilada', 'guacamole', 'salsa', 'tortilla', 'casa', 'cantina', 'latina', 'tamale', 'chile relleno', 'restaurante', 'comida']],
+        japanese: ['Japanese', ['japan', 'sushi', 'ramen', 'tempura', 'miso', 'teriyaki', 'udon', 'yakitori', 'sashimi', 'bento', 'onigiri', 'shokudo', 'izakaya']],
+        american: ['American', ['america', 'burger', 'fries', 'shake', 'hot dog', 'bbq', 'wings', 'tender', 'meatloaf', 'apple pie', 'steak', 'diner', 'eatery']],
+        korean: ['Korean', ['korea','kimchi', 'bulgogi', 'bibimbap', 'tteokbokki', 'galbi', 'japchae', 'kimbap', 'soju', 'doenjang', 'restaurant', 'sikdang']],
+        mediterranean: ['Mediterranean', ['hummus', 'falafel', 'tabbouleh', 'tzatziki', 'pita', 'gyros', 'moussaka', 'olive', 'feta', 'taverna']],
+        thai: ['Thai', ['thailand','pad thai', 'green curry', 'tom yum', 'spring roll', 'satay', 'massaman', 'som tam', 'drunken noodles', 'larb', 'restaurang']],
         african: ['African', ['jollof', 'injera', 'tagine', 'bunny chow', 'biltong', 'samosa', 'piri piri', 'cassava', 'yassa', 'restaurant']],
-        vietnamese: ['Vietnamese', ['pho', 'banh mi', 'spring roll', 'bun', 'rice noodle', 'nuoc cham', 'curry', 'goi', 'cha gio', 'quan', 'hàng', 'anh']],
-        french: ['French', ['croissant', 'baguette', 'escargot', 'ratatouille', 'quiche', 'crepe', 'macaron', 'bouillabaisse', 'coq au vin']],
-        asian: ['Asian', ['asian']]
+        vietnamese: ['Vietnamese', ['vietnam','pho', 'banh mi', 'spring roll', 'bun bo', 'rice noodle', 'nuoc cham', 'curry', 'goi', 'cha gio', 'quan', 'hàng', 'anh', 'saigon', 'nam']],
+        french: ['French', ['france', 'paris', 'croissant', 'baguette', 'escargot', 'ratatouille', 'quiche', 'crepe', 'macaron', 'bouillabaisse', 'coq au vin']],
+        turkish: ['Turkish', ['kebap', 'doner', 'baklava', 'meze', 'lahmacun', 'pide', 'borek', 'kofte', 'simit', 'manti']],
+        asian: ['Asian', ['asian', 'asia']]
     };
 
 
