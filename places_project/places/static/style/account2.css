@@ -160,6 +160,9 @@ h2 {
     gap: 10px;
     padding: 0px 20px;
 }
+.user-greeting:hover {
+    background-color: #cfdeca;
+}
 .signin {
     background-color: rgb(0,0,0,0);
     font-family: 'Open Sans', sans-serif;

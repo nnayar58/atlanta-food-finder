@@ -141,7 +141,7 @@ textarea::placeholder {
     border: none;
 }
 
-.signin:hover {
+.user-greeting:hover {
     background-color: #cfdeca;
 }
 
