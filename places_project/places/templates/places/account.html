@@ -25,11 +25,6 @@
                 <a href="#" id="logoutButton" class="dropdown-link">Log Out</a>
             </div>
         </div>
-  <div class="main-container">
-    <div class="account-buttons">
-      <button id="account-info-button" class="account-info-button">Account Info</button>
-      <button id="favorites-button" class="favorites-button">Favorites</button>
-      <button id="reviews-button" class="reviews-button">Reviews</button>
     </div>
     <h2>User Account</h2>
     <div class="main-container">
@@ -49,22 +44,22 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      const userData = JSON.parse(localStorage.getItem('userData'));
-      if (userData) {
-          document.getElementById('accountName').innerText = `${userData.firstName} ${userData.lastName}`;
-          document.getElementById('accountEmail').innerText = userData.email;
-      } else {
-          document.getElementById('accountName').innerText = 'Guest';
-          document.getElementById('accountEmail').innerText = 'Not logged in';
-      }
-  });
+    document.addEventListener("DOMContentLoaded", function() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) {
+            document.getElementById('accountName').innerText = `${userData.firstName} ${userData.lastName}`;
+            document.getElementById('accountEmail').innerText = userData.email;
+        } else {
+            document.getElementById('accountName').innerText = 'Guest';
+            document.getElementById('accountEmail').innerText = 'Not logged in';
+        }
+    });
 
-  const logoutButton = document.getElementById('logoutButton');
-  logoutButton.addEventListener('click', () => {
-      localStorage.clear(); // Clear all stored data
-      window.location.href = "{% url 'login' %}"; // Redirect to login page
-  });
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', () => {
+        localStorage.clear(); // Clear all stored data
+        window.location.href = "{% url 'login' %}"; // Redirect to login page
+    });
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
